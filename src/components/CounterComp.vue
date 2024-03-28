@@ -1,0 +1,111 @@
+<template>
+    <div class="counter" v-if="howDone">
+        <div class="counter-go"  v-if="howDone !== howItemsLegth">
+            done {{howDone}} out of {{ howItemsLegth }} 
+        </div>
+        <div class="counter-all_done" v-if="howDone == howItemsLegth">
+                completed 
+                    <div class="cup">
+                        <img class="smoke-one" :src="smoke" alt="smoke_1">
+                        <img class="smoke-two" :src="smoke" alt="smoke_2">
+                        <img class="smoke-thee" :src="smoke" alt="smoke_3">
+                        <i class="bi bi-cup"></i>
+                    </div> 
+        </div>
+    </div>
+</template>
+
+<script>
+import smoke from '@/assets/svg/smoke1-svgrepo-com.svg'
+
+export default {
+    data() {
+        return{
+            smoke,
+        }
+    },
+    computed:{
+        howItemsLegth(){
+            return this.$store.state.ListItems.length
+        },
+        howDone(){
+            return this.$store.getters.doneTodosCount
+        }
+    }
+}
+</script>
+
+<style lang="scss" scoped>
+.counter{
+    &-go{
+        animation: fadeUpLeft 1 0.5s ease-in;
+    }
+    &-all{
+        &_done{
+            animation: fadeUpLeft 1 0.5s ease-in;
+            display: flex;
+            column-gap: 5px;
+        }
+    }
+}
+
+.cup{
+    position: relative;
+    display: flex;
+    font-size: 18px;
+    img{
+        position: absolute;
+        width: 10px;
+        
+        &.smoke{
+            &-one{
+                top: -8px;
+                left: -1px;
+                animation: UpTo 1.8s ease-in-out infinite;
+            }
+            &-two{
+                top: -12px;
+                left: 3px;
+                animation: UpTo 2.2s ease-in-out infinite;
+            }
+            &-thee{
+                top: -10px;
+                left: 8px;
+                animation: UpTo 2.5s ease-in-out infinite;
+            }
+        }
+    }
+}
+
+
+@keyframes fadeUpLeft {
+    0% { 
+        // font-size: 10px;
+        width: 120%;
+        text-align: left;
+        opacity: 0.5;
+    }
+    100%{
+        // font-size: 16px;
+        width: none;
+        opacity: 1;
+    }
+}
+
+@keyframes UpTo{
+    0%{
+        opacity: 0%;
+        top: -7px;
+    }
+    50%{
+        opacity: 80%;
+        top: -11px;
+    }
+    100%{
+        opacity: 0%;
+        top: -14px;
+    }
+}
+
+
+</style>
