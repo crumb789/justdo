@@ -6,10 +6,10 @@ export default createStore({
     ListItems:[
       {
         id: 0,
-        text: 'First Zametka',
-        check:  false,
+        text: "Let's start with this ",
+        check:  null,
         dateCreate: '2.1.2023',
-        important: false,
+        important: null,
       }
     ],
     ListItemsFilter:[

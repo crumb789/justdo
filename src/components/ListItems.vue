@@ -8,21 +8,21 @@
                 <div class="item box" :class="{green: item.check}" @mouseenter="deleteButton = item.id" @mouseleave="deleteButton = false">
                     
                     <!-- done check -->
-                    <button v-if="!item.check" title="This is done"
+                    <button v-if="!item.check && item.check !== null" title="This is done"
                         class="check button is-ghost" @click="CheckThisitem(item)">
                         <i class="bi bi-check2"></i>
                     </button>
-                    <button v-if="item.check" title="Back to work"
+                    <button v-if="item.check  && item.check !== null" title="Back to work"
                         class="check button is-ghost" @click="CheckOffThisitem(item)">
                         <i class="bi bi-arrow-counterclockwise"></i>
                     </button>
                     
                     <!-- important change -->
-                    <button v-if="item.important" title="It's not that important" 
+                    <button v-if="item.important && item.important !== null" title="It's not that important" 
                         class="important button is-ghost" @click="ThisImportantOff(item)">
                         <i class="bi bi-patch-exclamation"></i>
                     </button>
-                    <button v-if="!item.important" title="This is important"
+                    <button v-if="!item.important && item.important !== null" title="This is important"
                         class="important-off button is-ghost" @click="ThisImportant(item)">
                         <i class="bi bi-exclamation"></i>
                     </button>
