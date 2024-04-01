@@ -83,6 +83,7 @@ export default {
     font-weight: 400;
     font-style: normal;
     margin-bottom: 30px;
+    margin-top: 30px !important;
     span{
         font-weight: 300;
         font-size: 14px;

@@ -1,35 +1,107 @@
 <template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
-    <h1>Првет, Юлия</h1>
-    <h2>{{ count }}</h2>
-    <button @click="update" :disabled="count == 2">+1</button>
-    <button @click="downgrade" :disabled="count <= 0">-1</button>
+  <div class="container">
+      <div class="main">
+          <h1  router-link='/home' class="title" @click="counterTitle">{{ title }} <span><counter-comp></counter-comp></span></h1>
+          <h5 class="title-counter" ></h5>
+      </div>
+
+<!-- inputs -->
+      <input-form v-if="activeBtn"></input-form>
+      <search-items v-if="!activeBtn"></search-items>
+<!-- search button activate -->
+      <button class="button is-light is-small" @click="changeBtn">
+          <span v-if="activeBtn"> search <i class="bi bi-search"></i> </span>
+          <span v-if="!activeBtn" @click="closeFilter"> close <i class="bi bi-x-circle"></i> </span>
+      </button>
+      
+      <list-items></list-items>
+      
+      
   </div>
 </template>
 
+
 <script>
-// @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
+import InputForm from '@/components/InputForm.vue'
+import ListItems from '@/components/ListItems.vue'
+import CounterComp from '@/components/CounterComp.vue'
+import SearchItems from '@/components/SearchItems.vue'
+
+
 
 export default {
-  name: 'HomeView',
-  components: {
-    HelloWorld
+components: { 
+      InputForm,
+      ListItems,
+      CounterComp,
+      SearchItems,
   },
   data() {
-    return{
-      count: 0
-    }
+      return{
+          title: 'Just Do..ToDo',
+          activeBtn: true,
+      }
   },
   methods:{
-    update(){
-      this.count = this.count + 1
-    },
-    downgrade(){
-      this.count = this.count - 1
-    }
+      changeBtn(){
+          this.activeBtn = !this.activeBtn
+      },
+      closeFilter(){
+          this.$store.commit('closeFilterItem',)
+      },
   },
+  computed:{
+      titleComputed(){
+          let arr
+          return arr
+      },       
+      GetAllItems(){
+          return this.$store.state.ListItems
+      }
+  },
+  mounted(){
+      // this.counterTitle()
+  }
 }
 </script>
+
+
+<style lang="scss" scoped>
+*{
+  font-family: "Roboto", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+.main{
+  display: block;
+}
+.title{
+  position: relative;
+  width: 282px;
+  margin: 0 auto;
+  font-family: "Reem Kufi Ink", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  margin-bottom: 30px;
+  margin-top: 30px;
+  span{
+      font-weight: 300;
+      font-size: 14px;
+      position: absolute;
+      right: -30%;
+      top: 50%;
+  }
+}
+
+.button{
+  font-size: 14px;
+  margin-top: 8px;
+  width: 70px;
+  height: 30px;
+  padding: 5px 6px;
+  align-items: center;
+  &:focus{
+      box-shadow: none;
+  }
+}
+</style>
