@@ -1,8 +1,8 @@
-
 import { createStore } from 'vuex';
 
 export default createStore({
   state: {
+    sortedList: false,
     ListItems:[
       {
         id: 0,
@@ -14,7 +14,7 @@ export default createStore({
     ],
     ListItemsFilter:[
       /* empty */
-    ]
+    ],
   },
   getters: {
     doneTodosCount(state ){
@@ -26,7 +26,11 @@ export default createStore({
       let arr;
       arr = state.ListItems.filter( i => i = (i.important === true )).length;
       return arr;
-    }
+    },
+    sortedItemsForId(state){
+      return [...state.ListItems].sort((a, b) => b.id - a.id)
+    },
+
   },
   mutations: {
 
@@ -107,16 +111,7 @@ export default createStore({
 
     // sorting
     sortedItems(state){
-      let arr = state.ListItems;
-
-      arr.sort(function(a, b) { return a.id - b.id; });
-
-      console.log(arr)
-      // console.log(state.ListItems)
-    },
-    sortedItemsBack(state){
-      state.ListItems.sort( (a, b) => a - b);
-      console.log(state.ListItems)
+      state.sortedList = !state.sortedList
     },
 
     ////proverka Localhost
@@ -124,7 +119,10 @@ export default createStore({
       if (localStorage.getItem('ListTodo')) {
         state.ListItems = JSON.parse(localStorage.ListTodo)
       }
-  }
+      // if(localStorage.getItem('sortedList')){
+      //   state.sortedList = JSON.parse(localStorage.sortedList)
+      // }
+  },
     
   },
   actions: {

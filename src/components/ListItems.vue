@@ -1,9 +1,9 @@
 <template>
     <div class="list">
         <check-important></check-important>
-        <select-filter></select-filter>
+        <select-filter v-if="GetAllItems.length > 1"></select-filter>
 
-        <div class="main-list" v-if="GetAllItemsFilter.length < 1">
+        <div  class="main-list" v-if="GetAllItemsFilter.length < 1 && !ifSorted">
             <div class="list-item" v-for="item in GetAllItems" :key="item.id">
                 <div class="item box" :class="{green: item.check}" @mouseenter="deleteButton = item.id" @mouseleave="deleteButton = false">
                     
@@ -40,7 +40,46 @@
             </div>
         </div>
 
-        <div v-if="GetAllItemsFilter" class="filter">
+        <!-- list sorted for id -  -->
+        <div v-if="ifSorted && GetAllItemsFilter.length < 1" class="sorted-list">
+            <div class="list-item" v-for="item in GetSortedItems" :key="item.id">
+                <div class="item box" :class="{green: item.check}" @mouseenter="deleteButton = item.id" @mouseleave="deleteButton = false">
+                    
+                    <!-- done check -->
+                    <button v-if="!item.check" title="This is done"
+                        class="check button is-ghost" @click="CheckThisitem(item)">
+                        <i class="bi bi-check2"></i>
+                    </button>
+                    <button v-if="item.check" title="Back to work"
+                        class="check button is-ghost" @click="CheckOffThisitem(item)">
+                        <i class="bi bi-arrow-counterclockwise"></i>
+                    </button>
+                    
+                    <!-- important change -->
+                    <button v-if="item.important" title="It's not that important"
+                        class="important button is-ghost" @click="ThisImportantOff(item)">
+                        <i class="bi bi-patch-exclamation"></i>
+                    </button>
+                    <button v-if="!item.important"  title="This is important"
+                        class="important-off button is-ghost" @click="ThisImportant(item)">
+                        <i class="bi bi-exclamation"></i>
+                    </button>
+
+                        {{ item.text }} 
+
+                    <!-- delete btns    -->
+                    <button  v-if="deleteButton === item.id" title="Delete it?"
+                        class="delete" @click="DeleteThisitem(item)">
+                    </button>   
+                    <div v-if="deleteButton === item.id"
+                        class="item-data">{{ item.dateCreate }}
+                    </div>             
+                </div>
+            </div>
+        </div>  
+        
+        <!-- list filter for important-  -->
+        <div v-if="GetAllItemsFilter" class="filter-list">
             <div class="list-item" v-for="item in GetAllItemsFilter" :key="item.id">
                 <div class="item box" :class="{green: item.check}" @mouseenter="deleteButton = item.id" @mouseleave="deleteButton = false">
                     
@@ -76,6 +115,7 @@
                 </div>
             </div>
         </div>  
+
     </div>
 </template>
 
@@ -83,13 +123,10 @@
 import SelectFilter from './SelectFilter.vue'
 import CheckImportant from './CheckImportant.vue'
 
-
-
 export default {
     components: {
         SelectFilter,
-        CheckImportant
-       
+        CheckImportant       
     },
     data() {
         return{
@@ -97,12 +134,23 @@ export default {
         }
     },
     computed:{
+        ifSorted(){ 
+          return  this.$store.state.sortedList
+        },
         GetAllItems(){
             return this.$store.state.ListItems
+            // if(!this.$store.getters.sortedList ){
+            //     return this.$store.getters.sortedItemsForId
+            // }
+
         },
+        GetSortedItems(){
+            return this.$store.getters.sortedItemsForId
+        },
+
         GetAllItemsFilter(){
             return this.$store.state.ListItemsFilter
-        }
+        },
     },
     methods:{
         DeleteThisitem(item){
@@ -126,6 +174,7 @@ export default {
     },
     beforeMount() {
         this.$store.commit('initialiseListItems')
+        // this.$store.commit('initialiseSortedList')
     },  
 }
 
@@ -136,7 +185,7 @@ export default {
 .list{
     display: flex;
     flex-direction: column;
-    margin-top: 30px;
+    margin: 30px 0px 60px 0px;
     position: relative;
     &-item{
         display: flex;
@@ -150,6 +199,7 @@ export default {
     width: 50%;
     margin: 5px 0;
     transition: 0.1s all;
+    animation: fadeUpFast 1 0.6s ease-in;
     &-data{
         position: absolute;
         right: 35px;
@@ -220,6 +270,15 @@ export default {
     }
     100%{
         font-size: 16px;
+        opacity: 1;
+    }
+}
+
+@keyframes fadeUpFast{
+    0% { 
+        opacity: 0.1;
+    }
+    100%{
         opacity: 1;
     }
 }

@@ -7,7 +7,7 @@ import store from './store'
 
 store.subscribe( (mutation, state) => {
     localStorage.setItem('ListTodo', JSON.stringify(state.ListItems));  
-    // localStorage.setItem('locations', JSON.stringify(state.locations));  
+    // localStorage.setItem('sortedList', JSON.stringify(state.sortedList));  
 })
 
 createApp(App).use(store).use(router).mount('#app')

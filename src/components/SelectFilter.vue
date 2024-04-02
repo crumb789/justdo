@@ -2,9 +2,9 @@
     <div class="select is-small is-rounded" v-if="howManyItems > 0">
         <!-- <button @click="changeSorted">fdsfds</button>
         <button @click="changeSortedBack">fdsfds</button> -->
-        <select>
-            <option>The old ones first</option>
-            <option>New ones first</option>
+        <select @change="changeSorted">
+            <option> Older </option>
+            <option> Newer </option>
         </select>
 
         
@@ -20,11 +20,8 @@ export default {
     },
     methods:{
         changeSorted(){
-            this.$store.state.commit('sortedItems')
+            this.$store.commit('sortedItems')
         },
-        changeSortedBack(){
-            this.$store.commit('sortedItemsBack')
-        }
     },
     computed:{
         howManyItems(){

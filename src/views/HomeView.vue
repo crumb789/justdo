@@ -14,8 +14,7 @@
           <span v-if="!activeBtn" @click="closeFilter"> close <i class="bi bi-x-circle"></i> </span>
       </button>
       
-      <list-items></list-items>
-      
+      <list-items></list-items>       
       
   </div>
 </template>
@@ -57,7 +56,7 @@ components: {
       },       
       GetAllItems(){
           return this.$store.state.ListItems
-      }
+      },
   },
   mounted(){
       // this.counterTitle()
