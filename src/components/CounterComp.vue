@@ -48,6 +48,14 @@ export default {
         }
     }
 }
+.bi{
+    position: relative;
+    &-cup{
+        &::before{
+            color: #6f4e37;
+        }
+    }
+}
 
 .cup{
     position: relative;

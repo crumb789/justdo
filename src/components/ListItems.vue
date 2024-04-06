@@ -1,11 +1,13 @@
 <template>
     <div class="list">
         <check-important></check-important>
-        <select-filter v-if="GetAllItems.length > 1"></select-filter>
+        <select-filter v-if="GetAllItems.length > 1 && !importantFilterTrue"></select-filter>
 
         <div  class="main-list" v-if="GetAllItemsFilter.length < 1 && !ifSorted">
             <div class="list-item" v-for="item in GetAllItems" :key="item.id">
-                <div class="item box" :class="{green: item.check}" @mouseenter="deleteButton = item.id" @mouseleave="deleteButton = false">
+                <div class="item box" 
+                :class="{green: item.check, orange: item.important, mix: item.check && item.important}" 
+                @mouseenter="deleteButton = item.id" @mouseleave="deleteButton = false">
                     
                     <!-- done check -->
                     <button v-if="!item.check && item.check !== null" title="This is done"
@@ -41,9 +43,11 @@
         </div>
 
         <!-- list sorted for id -  -->
-        <div v-if="ifSorted && GetAllItemsFilter.length < 1" class="sorted-list">
+        <div v-if="ifSorted && GetAllItemsFilter.length < 1 " class="sorted-list">
             <div class="list-item" v-for="item in GetSortedItems" :key="item.id">
-                <div class="item box" :class="{green: item.check}" @mouseenter="deleteButton = item.id" @mouseleave="deleteButton = false">
+                <div class="item box" 
+                :class="{green: item.check, orange: item.important, mix: item.check && item.important}" 
+                @mouseenter="deleteButton = item.id" @mouseleave="deleteButton = false">
                     
                     <!-- done check -->
                     <button v-if="!item.check" title="This is done"
@@ -81,7 +85,10 @@
         <!-- list filter for important-  -->
         <div v-if="GetAllItemsFilter" class="filter-list">
             <div class="list-item" v-for="item in GetAllItemsFilter" :key="item.id">
-                <div class="item box" :class="{green: item.check}" @mouseenter="deleteButton = item.id" @mouseleave="deleteButton = false">
+                <div class="item box" 
+                :class="{green: item.check, orange: item.important, mix: item.check && item.important}" 
+                @mouseenter="deleteButton = item.id" 
+                @mouseleave="deleteButton = false">
                     
                     <!-- done check -->
                     <button v-if="!item.check" title="This is done"
@@ -151,6 +158,9 @@ export default {
         GetAllItemsFilter(){
             return this.$store.state.ListItemsFilter
         },
+        importantFilterTrue(){
+            return this.$store.state.importantFilter
+        },
     },
     methods:{
         DeleteThisitem(item){
@@ -210,6 +220,8 @@ export default {
         box-shadow: 2px 1px 3px  #9b9a9a;
     }
 }
+
+
 .delete{
     position: absolute;
     right: 5px;
@@ -287,7 +299,13 @@ export default {
     background-color: aquamarine;
     text-decoration: line-through;
     transition: 0.3s;
-}   
+} 
 
+.orange{
+    background-color: #f69e545c;
+}
+.mix{
+    background-color: #54f6665c;
+}
 
 </style>

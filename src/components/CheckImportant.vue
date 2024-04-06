@@ -23,10 +23,12 @@ export default {
             if(this.checkbox == true){
                 console.log('true 111')
                 this.$store.commit('OnlyImportantShow', this.checkbox)
+                this.$store.commit('changeImportantFilter', true)
             }
             if(this.checkbox == false){
                 console.log('false 222')
                 this.$store.commit('closeFilterItem')
+                this.$store.commit('changeImportantFilter', false)
             }
 
             

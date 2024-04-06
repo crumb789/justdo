@@ -3,6 +3,7 @@ import { createStore } from 'vuex';
 export default createStore({
   state: {
     sortedList: false,
+    importantFilter: false,
     ListItems:[
       {
         id: 0,
@@ -28,7 +29,14 @@ export default createStore({
       return arr;
     },
     sortedItemsForId(state){
-      return [...state.ListItems].sort((a, b) => b.id - a.id)
+      if(state.sortedList === true && state.importantFilter === false){
+        console.log('3333')
+        return [...state.ListItems].sort((a, b) => b.id - a.id)
+      }
+      if(state.sortedList === true && state.importantFilter === true ){
+        console.log('13213')
+        return [...state.ListItemsFilter].sort((a, b) => b.id - a.id)
+      }
     },
 
   },
@@ -40,6 +48,7 @@ export default createStore({
 
     DeleteItem(state, item){
       state.ListItems = state.ListItems.filter(i => i.id != item.id);
+      state.ListItemsFilter = state.ListItemsFilter.filter(i => i.id != item.id);
 
       console.log(item.id);
     },
@@ -80,6 +89,9 @@ export default createStore({
         );
       });
     },
+    changeImportantFilter(state, change){
+      state.importantFilter = change
+    },
 
     // search
     SearchItemsInput(state, itemSearch ){
@@ -102,7 +114,7 @@ export default createStore({
       /* state */
       state.ListItemsFilter = state.ListItems.filter(i => {
         if(check === true && i.important== check){
-          return state.ListItemsFilter
+          return state.ListItemsFilter           
         }
 
       });
@@ -113,6 +125,7 @@ export default createStore({
     sortedItems(state){
       state.sortedList = !state.sortedList
     },
+
 
     ////proverka Localhost
     initialiseListItems(state) {
