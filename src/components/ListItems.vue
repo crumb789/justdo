@@ -1,9 +1,15 @@
 <template>
     <div class="list">
         <check-important></check-important>
+
+        <date-filter></date-filter>                
         <select-filter v-if="GetAllItems.length > 1 && !importantFilterTrue"></select-filter>
 
-        <div  class="main-list" v-if="GetAllItemsFilter.length < 1 && !ifSorted">
+        <list-items-filter-date v-if="ifDataFilter > 2"></list-items-filter-date>
+
+        <placeholder-items-empty v-if="false"></placeholder-items-empty>
+
+        <div   class="main-list" v-if="GetAllItemsFilter.length < 1 && !ifSorted && ifDataFilter < 2">
             <div class="list-item" v-for="item in GetAllItems" :key="item.id">
                 <div class="item box" 
                 :class="{green: item.check, orange: item.important, mix: item.check && item.important}" 
@@ -129,11 +135,17 @@
 <script>
 import SelectFilter from './SelectFilter.vue'
 import CheckImportant from './CheckImportant.vue'
+import DateFilter from './DateFilter.vue'
+import ListItemsFilterDate from './ListItemsFilterDate.vue'
+import PlaceholderItemsEmpty from './PlaceholderItemsEmpty.vue'
 
 export default {
     components: {
         SelectFilter,
-        CheckImportant       
+        CheckImportant,
+        DateFilter,
+        ListItemsFilterDate,
+        PlaceholderItemsEmpty
     },
     data() {
         return{
@@ -161,6 +173,9 @@ export default {
         importantFilterTrue(){
             return this.$store.state.importantFilter
         },
+        ifDataFilter(){
+            return this.$store.state.DataToSorted.length
+        }
     },
     methods:{
         DeleteThisitem(item){
@@ -191,11 +206,11 @@ export default {
 </script>
 
 
-<style lang="scss" scoped>
+<style lang="scss" >
 .list{
     display: flex;
     flex-direction: column;
-    margin: 30px 0px 60px 0px;
+    margin: 45px 0px 60px 0px;
     position: relative;
     &-item{
         display: flex;

@@ -1,5 +1,5 @@
 <template>
-    <div class="select is-small is-rounded" v-if="howManyItems > 0">
+    <div class="select select-filter is-small is-rounded" v-if="howManyItems > 0">
         <!-- <button @click="changeSorted">fdsfds</button>
         <button @click="changeSortedBack">fdsfds</button> -->
         <select @change="changeSorted">
@@ -36,8 +36,11 @@ export default {
 
 <style lang="scss">
 .select{
-    position: absolute;
-    top: -30px;
-    right: 25%;
+    &-filter{
+        position: absolute;
+        top: -30px;
+        right: 25%;
+    }
+    
 }
 </style>
