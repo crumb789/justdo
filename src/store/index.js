@@ -11,6 +11,8 @@ export default createStore({
         check:  null,
         dateCreate: '2.1.2023',
         important: null,
+        mustDone: null,
+        mustDoneparse: null
       }
     ],
     ListItemsFilter:[
@@ -78,6 +80,9 @@ export default createStore({
     years: [2023,2024,2025,2026,2027,2028,2029,2030],
   },
   getters: {
+    today(){
+      return `${new Date().getFullYear()}-${new Date().getMonth() + 1}-${ new Date().getDate() }`
+    },
     doneTodosCount(state ){
       let arr;
       arr = state.ListItems.filter( i => i = (i.check === true )).length;
@@ -90,18 +95,17 @@ export default createStore({
     },
     sortedItemsForId(state){
       if(state.sortedList === true && state.importantFilter === false){
-        console.log('3333')
+        
         return [...state.ListItems].sort((a, b) => b.id - a.id);
       }
       if(state.sortedList === true && state.importantFilter === true ){
-        console.log('13213')
+        
         return [...state.ListItemsFilter].sort((a, b) => b.id - a.id);
       }
     },
     filterToDate(state){
       let arr;
       let data 
-      // console.log(state.DataToSorted[1] )
       (state.DataToSorted[1] == 'January') ? data = state.DataToSorted[0] + '.' + 1 + '.' + state.DataToSorted[2]: false;
       (state.DataToSorted[1] == 'February') ? data = state.DataToSorted[0] + '.' + 2 + '.' +  state.DataToSorted[2] : false;
       (state.DataToSorted[1] == 'March') ? data = state.DataToSorted[0] + '.' + 3 + '.' +  state.DataToSorted[2] : false ;
@@ -115,9 +119,9 @@ export default createStore({
       (state.DataToSorted[1] == 'November') ? data = state.DataToSorted[0] + '.' + 11 + '.' +  state.DataToSorted[2] : false;
       (state.DataToSorted[1] == 'December') ? data = state.DataToSorted[0] + '.' + 12 + '.' +  state.DataToSorted[2] : false;
 
-      console.log(data + ' DATA CREATE')
+      
       arr = state.ListItems.filter( i => i.dateCreate == data) ;
-      console.log(arr)
+      
       return arr;
     }
 
@@ -132,12 +136,12 @@ export default createStore({
       state.ListItems = state.ListItems.filter(i => i.id != item.id);
       state.ListItemsFilter = state.ListItemsFilter.filter(i => i.id != item.id);
 
-      console.log(item.id);
+      
     },
 
     /* check change */
     CheckItem(state, item ){
-      console.log(item.id)
+      
       state.ListItems.map(i => {
         if( item.id == i.id && i.check === false) ( 
           i.check = true
@@ -145,7 +149,6 @@ export default createStore({
       });
     },
     CheckItemOff(state, item ){
-      console.log(item.id)
       state.ListItems.map(i => {
         if( item.id == i.id && i.check === true) ( 
           i.check = false
@@ -155,7 +158,6 @@ export default createStore({
 
     /* important change */
     ImportantItem(state, item ){
-      console.log(item.id, item.important)
       state.ListItems.map(i => {
 
         if( item.id == i.id && i.important === false) ( 
@@ -175,21 +177,6 @@ export default createStore({
       state.importantFilter = change
     },
 
-    // search
-    SearchItemsInput(state, itemSearch ){
-      /* state */
-      console.log(itemSearch)
-      state.ListItemsFilter = state.ListItems.filter(i => {
-        if(itemSearch && i.text == itemSearch){
-          return state.ListItemsFilter
-        }
-
-      });
-    },
-    closeFilterItem(state){
-      state.ListItemsFilter = []
-    },
-
 
     // important sort
     OnlyImportantShow(state, check ){
@@ -202,6 +189,11 @@ export default createStore({
       });
     },
 
+    /////close Filter
+    closeFilterItem(state){
+      state.ListItemsFilter = []
+    },
+
 
     // sorting
     sortedItems(state){
@@ -211,15 +203,12 @@ export default createStore({
     ////////////
     sortedItemsToDate(state, date){
       (date !== 0 && date) ? state.DataToSorted[0] = date : false ;
-      console.log(state.DataToSorted)
     },
     sortedItemsToMonth(state, month){
       (month !== 0 && month) ? state.DataToSorted[1] = month : false;
-      console.log(state.DataToSorted)
     },
     sortedItemsToYears(state, year){
       (year !== 0 && year) ? state.DataToSorted[2] = year : false;
-      console.log(state.DataToSorted)
     },
     resetDataToSorted(state){
       state.DataToSorted = []

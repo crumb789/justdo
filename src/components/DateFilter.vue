@@ -35,15 +35,12 @@ export default {
     },
     methods:{
         changeSortedDate(){
-            console.log(this.selectedDate)
             this.$store.commit('sortedItemsToDate', this.selectedDate)
         },
         changeSortedMonths(){
-            console.log(this.selectedMonth)
             this.$store.commit('sortedItemsToMonth', this.selectedMonth )
         },
         changeSortedYears(){
-            console.log(this.selectedYear)
             this.$store.commit('sortedItemsToYears', this.selectedYear)
         },
         resetDataToSorted(){

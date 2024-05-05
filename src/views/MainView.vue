@@ -7,12 +7,7 @@
 
 <!-- inputs -->
         <input-form v-if="activeBtn"></input-form>
-        <search-items v-if="!activeBtn"></search-items>
 <!-- search button activate -->
-        <button class="button is-light is-small" @click="changeBtn">
-            <span v-if="activeBtn"> search <i class="bi bi-search"></i> </span>
-            <span v-if="!activeBtn" @click="closeFilter"> close <i class="bi bi-x-circle"></i> </span>
-        </button>
         
         <list-items></list-items>
         
@@ -25,16 +20,12 @@
 import InputForm from '@/components/InputForm.vue'
 import ListItems from '@/components/ListItems.vue'
 import CounterComp from '@/components/CounterComp.vue'
-import SearchItems from '@/components/SearchItems.vue'
-
-
 
 export default {
   components: { 
         InputForm,
         ListItems,
         CounterComp,
-        SearchItems,
     },
     data() {
         return{

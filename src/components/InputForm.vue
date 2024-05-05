@@ -1,9 +1,33 @@
 <template>
     <div class="container">
         <div class="form">
-            <form @submit.prevent="OnSubmit" >
-                <input id="input-form" class="input is-info is-small" type="text" v-model="item" maxlength="80" placeholder="type here...">
+
+            <form v-if="btnMore" @submit.prevent="OnSubmit" >
+                <input id="input-form"  required
+                class="input is-info is-small" type="text" v-model="item" maxlength="80" 
+                placeholder="type here...">
+                <div @click="changeBtnMore" class="button is-ghost" title="more data ">
+                    <!-- more data -->
+                    <i class="bi bi-arrow-bar-down"></i>
+                </div>
             </form>
+
+            <!-- /////////////// -->
+            <form v-if="!btnMore" @submit.prevent="OnSubmit" >
+                <input id="input-form" 
+                class="input is-info is-small" type="text" v-model="item" maxlength="80" 
+                placeholder="type here...">
+
+                <label class="label" for="input-date">When should I do it?</label>
+                <input id="input-date" required
+                    v-model="mustDone"
+                    class="input input-date is-info is-small " type="date">
+                <div @click="changeBtnMore" class="button is-ghost" title="close">
+                    <i class="bi bi-arrow-bar-up"></i>
+                    <!-- close -->
+                </div>
+            </form>
+            
             <div class="data">
                 <span v-if="actualDateForItems[0]" class="data-number data-box data-box-line">
                     {{ actualDateForItems[0] + ' ' }}
@@ -23,7 +47,10 @@
 export default {
     data() {
         return{
-            item: ''
+            item: '',
+            // nowDay: `${new Date().getFullYear()}-${new Date().getMonth() + 1}-${new Date().getDate()}`
+            btnMore: true,
+            mustDone: null,
         }
     },
     methods:{
@@ -31,24 +58,46 @@ export default {
 
             let now = `${new Date().getDate()}.${new Date().getMonth() + 1}.${ new Date().getFullYear() }`
             /* if empty item -> dont push */
-            if(this.item && this.item !== ' ' && this.item !== '  ' && this.item !== '   '){
+            if(this.item && this.item !== ' ' && this.item !== '  ' && this.item !== '   ' && this.mustDone){
                 /* create body item */
                 let note = {   
                     id: Date.now(),
                     text: this.item,
                     check: false ,
                     dateCreate: now,
-                    important: false
+                    important: false,
+                    mustDone: this.mustDone.split('-').reverse().join('.'),
+                    mustDoneparse:  this.mustDone
                 }
             
                 /* push item to LIST in store */
                 this.$store.commit('NewItem', note)
 
                 this.item = ''
+                this.btnMore = true
+            }
+            if(this.item && this.item !== ' ' && this.item !== '  ' && this.item !== '   ' && !this.mustDone){
+                /* create body item */
+                let note = {   
+                    id: Date.now(),
+                    text: this.item,
+                    check: false ,
+                    dateCreate: now,
+                    important: false,
+                }
+            
+                /* push item to LIST in store */
+                this.$store.commit('NewItem', note)
+
+                this.item = ''
+                this.btnMore = true
             }
             else false
             
         },
+        changeBtnMore(){
+            this.btnMore = !this.btnMore
+        }
     },
     computed:{
         actualDateForItems(){
@@ -62,19 +111,44 @@ export default {
 <style lang="scss" >
 .form{
     position: relative;
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;   
+    form{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 4px;
+    }
 }
+
+.label{
+    font-size: 14px;
+}
+
 .input{
     width: 200px;
+    &-date{
+        // margin-top: 3px !important;
+        display: flex;
+        margin: 0 auto;
+        justify-content: center;
+    }
 }
+
 .is-small{
     &.input{
         border-radius: 6px;
     }
 }
+.button.is-ghost.is-focused:not(:active), .button:focus:not(:active){
+    box-shadow: none;
+}
 .data{
     position: absolute;
-    top: 50%;
-    right: 31%;
+    top: 16px;
+    right: -23%;
     transform: translateY(-50%);
     &-number{
 

@@ -2,7 +2,8 @@
     <div  class="main-list ">
             <div class="list-item" v-for="item in GetAllItemsFilterToDate" :key="item.id">
                 <div class="item box" 
-                :class="{green: item.check, orange: item.important, mix: item.check && item.important}" 
+                :class="{green: item.check, orange: item.important, mix: item.check && item.important, 
+                    alert: checkToday > Date.parse(item.mustDoneparse) && !item.check }" 
                 @mouseenter="deleteButton = item.id" @mouseleave="deleteButton = false">
                     
                     <!-- done check -->
@@ -31,8 +32,8 @@
                     <button  v-if="deleteButton === item.id" title="Delete it?"
                         class="delete" @click="DeleteThisitem(item)">
                     </button>   
-                    <div v-if="deleteButton === item.id"
-                        class="item-data">{{ item.dateCreate }}
+                    <div v-if="deleteButton === item.id && item.mustDone"
+                        class="item-data"> {{ item.mustDone }} <!-- {{ item.dateCreate }} -->
                     </div>             
                 </div>
             </div>
@@ -53,7 +54,6 @@ export default {
         },
         CheckThisitem( item){
             this.$store.commit('CheckItem', item)
-            // console.log( index, item)
         },
         CheckOffThisitem(item){
             this.$store.commit('CheckItemOff', item)
@@ -69,8 +69,10 @@ export default {
     computed:{
         GetAllItemsFilterToDate(){
             // let date = this.$store.state.DataToSorted.join('.')
-            // // console.log(date)
             return this.$store.getters.filterToDate
+        },
+        checkToday(){
+            return Date.parse(this.$store.getters.today)
         }
     }
 }

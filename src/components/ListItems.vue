@@ -5,129 +5,17 @@
         <date-filter></date-filter>                
         <select-filter v-if="GetAllItems.length > 1 && !importantFilterTrue"></select-filter>
 
+        <main-list-items v-if="GetAllItemsFilter.length < 1 && !ifSorted && ifDataFilter < 2"></main-list-items>
         <list-items-filter-date v-if="ifDataFilter > 2"></list-items-filter-date>
+<!-- list sorted for id -  -->
+        <list-sorted-for-id v-if="ifSorted && GetAllItemsFilter.length < 1 " class="sorted-list"></list-sorted-for-id>
 
+<!-- list filter for important-  -->        
+        <important-list-items v-if="GetAllItemsFilter" class="filter-list"></important-list-items>
+
+
+<!-- placeholder -->
         <placeholder-items-empty v-if="false"></placeholder-items-empty>
-
-        <div   class="main-list" v-if="GetAllItemsFilter.length < 1 && !ifSorted && ifDataFilter < 2">
-            <div class="list-item" v-for="item in GetAllItems" :key="item.id">
-                <div class="item box" 
-                :class="{green: item.check, orange: item.important, mix: item.check && item.important}" 
-                @mouseenter="deleteButton = item.id" @mouseleave="deleteButton = false">
-                    
-                    <!-- done check -->
-                    <button v-if="!item.check && item.check !== null" title="This is done"
-                        class="check button is-ghost" @click="CheckThisitem(item)">
-                        <i class="bi bi-check2"></i>
-                    </button>
-                    <button v-if="item.check  && item.check !== null" title="Back to work"
-                        class="check button is-ghost" @click="CheckOffThisitem(item)">
-                        <i class="bi bi-arrow-counterclockwise"></i>
-                    </button>
-                    
-                    <!-- important change -->
-                    <button v-if="item.important && item.important !== null" title="It's not that important" 
-                        class="important button is-ghost" @click="ThisImportantOff(item)">
-                        <i class="bi bi-patch-exclamation"></i>
-                    </button>
-                    <button v-if="!item.important && item.important !== null" title="This is important"
-                        class="important-off button is-ghost" @click="ThisImportant(item)">
-                        <i class="bi bi-exclamation"></i>
-                    </button>
-
-                        {{ item.text }} 
-
-                    <!-- delete btns    -->
-                    <button  v-if="deleteButton === item.id" title="Delete it?"
-                        class="delete" @click="DeleteThisitem(item)">
-                    </button>   
-                    <div v-if="deleteButton === item.id"
-                        class="item-data">{{ item.dateCreate }}
-                    </div>             
-                </div>
-            </div>
-        </div>
-
-        <!-- list sorted for id -  -->
-        <div v-if="ifSorted && GetAllItemsFilter.length < 1 " class="sorted-list">
-            <div class="list-item" v-for="item in GetSortedItems" :key="item.id">
-                <div class="item box" 
-                :class="{green: item.check, orange: item.important, mix: item.check && item.important}" 
-                @mouseenter="deleteButton = item.id" @mouseleave="deleteButton = false">
-                    
-                    <!-- done check -->
-                    <button v-if="!item.check" title="This is done"
-                        class="check button is-ghost" @click="CheckThisitem(item)">
-                        <i class="bi bi-check2"></i>
-                    </button>
-                    <button v-if="item.check" title="Back to work"
-                        class="check button is-ghost" @click="CheckOffThisitem(item)">
-                        <i class="bi bi-arrow-counterclockwise"></i>
-                    </button>
-                    
-                    <!-- important change -->
-                    <button v-if="item.important" title="It's not that important"
-                        class="important button is-ghost" @click="ThisImportantOff(item)">
-                        <i class="bi bi-patch-exclamation"></i>
-                    </button>
-                    <button v-if="!item.important"  title="This is important"
-                        class="important-off button is-ghost" @click="ThisImportant(item)">
-                        <i class="bi bi-exclamation"></i>
-                    </button>
-
-                        {{ item.text }} 
-
-                    <!-- delete btns    -->
-                    <button  v-if="deleteButton === item.id" title="Delete it?"
-                        class="delete" @click="DeleteThisitem(item)">
-                    </button>   
-                    <div v-if="deleteButton === item.id"
-                        class="item-data">{{ item.dateCreate }}
-                    </div>             
-                </div>
-            </div>
-        </div>  
-        
-        <!-- list filter for important-  -->
-        <div v-if="GetAllItemsFilter" class="filter-list">
-            <div class="list-item" v-for="item in GetAllItemsFilter" :key="item.id">
-                <div class="item box" 
-                :class="{green: item.check, orange: item.important, mix: item.check && item.important}" 
-                @mouseenter="deleteButton = item.id" 
-                @mouseleave="deleteButton = false">
-                    
-                    <!-- done check -->
-                    <button v-if="!item.check" title="This is done"
-                        class="check button is-ghost" @click="CheckThisitem(item)">
-                        <i class="bi bi-check2"></i>
-                    </button>
-                    <button v-if="item.check" title="Back to work"
-                        class="check button is-ghost" @click="CheckOffThisitem(item)">
-                        <i class="bi bi-arrow-counterclockwise"></i>
-                    </button>
-                    
-                    <!-- important change -->
-                    <button v-if="item.important" title="It's not that important"
-                        class="important button is-ghost" @click="ThisImportantOff(item)">
-                        <i class="bi bi-patch-exclamation"></i>
-                    </button>
-                    <button v-if="!item.important"  title="This is important"
-                        class="important-off button is-ghost" @click="ThisImportant(item)">
-                        <i class="bi bi-exclamation"></i>
-                    </button>
-
-                        {{ item.text }} 
-
-                    <!-- delete btns    -->
-                    <button  v-if="deleteButton === item.id" title="Delete it?"
-                        class="delete" @click="DeleteThisitem(item)">
-                    </button>   
-                    <div v-if="deleteButton === item.id"
-                        class="item-data">{{ item.dateCreate }}
-                    </div>             
-                </div>
-            </div>
-        </div>  
 
     </div>
 </template>
@@ -138,6 +26,9 @@ import CheckImportant from './CheckImportant.vue'
 import DateFilter from './DateFilter.vue'
 import ListItemsFilterDate from './ListItemsFilterDate.vue'
 import PlaceholderItemsEmpty from './PlaceholderItemsEmpty.vue'
+import MainListItems from './MainListItems.vue'
+import ListSortedForId from './ListSortedForId.vue'
+import ImportantListItems from './ImportantListItems.vue'
 
 export default {
     components: {
@@ -145,7 +36,10 @@ export default {
         CheckImportant,
         DateFilter,
         ListItemsFilterDate,
-        PlaceholderItemsEmpty
+        PlaceholderItemsEmpty,
+        MainListItems,
+        ListSortedForId,
+        ImportantListItems,
     },
     data() {
         return{
@@ -175,6 +69,9 @@ export default {
         },
         ifDataFilter(){
             return this.$store.state.DataToSorted.length
+        },
+        checkToday(){
+            return Date.parse(this.$store.getters.today)
         }
     },
     methods:{
@@ -184,7 +81,6 @@ export default {
 
         CheckThisitem( item){
             this.$store.commit('CheckItem', item)
-            // console.log( index, item)
         },
         CheckOffThisitem(item){
             this.$store.commit('CheckItemOff', item)
@@ -230,6 +126,12 @@ export default {
         right: 35px;
         top: 7px;
         font-size: 12px;
+        border: 1px solid #000;
+        border-radius: 3px;
+        color: #000;
+        background: #ffffff;
+        padding: 1px 5px;
+        z-index: 2;
     }
     &:hover{
         box-shadow: 2px 1px 3px  #9b9a9a;
@@ -290,6 +192,7 @@ export default {
     
 }
 
+
 @keyframes fadeUp {
     0% { 
         font-size: 10px;
@@ -323,4 +226,8 @@ export default {
     background-color: #54f6665c;
 }
 
+.alert{
+    color: #000;
+    background-color: #fd9500b8;      
+}
 </style>
