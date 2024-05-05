@@ -150,26 +150,6 @@ export default {
     top: 16px;
     right: -23%;
     transform: translateY(-50%);
-    &-number{
-
-    }
-    &-months{
-
-    }   
-    &-year{
-        
-    }
-    &-show{
-        cursor: pointer;
-        right: -40%;
-    }
-    &-reset{
-        cursor: pointer;
-        position: absolute;
-        top: 55%;
-        left:  -103%;
-        transform: translateY(-50%);
-    }
     &-box{
         animation: fadeUp 1 0.2s ease;
         position: relative;

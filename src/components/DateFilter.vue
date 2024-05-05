@@ -1,5 +1,7 @@
 <template>
     <div class="select select-date is-small is-rounded" v-if="howManyItems > 0">
+
+       <!--  btn-calendar -->
         <span  v-if="showBtnDataChoise" @click="showBtnDataChoise = false" class="data-show data-box" title="select a date">
             <i class="bi bi-calendar4-week"></i>
         </span> 
@@ -17,7 +19,8 @@
             <option v-for="(year, index) in yearsGetters" :key="index "> {{ year }} </option>
         </select>      
 
-        <span v-if="ifNeedResetdata > 2" @click="resetDataToSorted" class="data-reset data-box" title="reset date?">
+        <!-- btn-reset -->
+        <span v-if="ifNeedResetdata > 0 && !showBtnDataChoise "  @click="resetDataToSorted" class="data-reset data-box" title="reset date?">
             <i class="bi bi-patch-minus-fill"></i>
         </span> 
     </div>
@@ -85,6 +88,24 @@ export default {
         justify-content: space-around;
         align-items: center;
         min-width: 255px;
+    }
+}
+
+.data{
+    position: absolute;
+    top: 16px;
+    right: -23%;
+    transform: translateY(-50%);
+    &-show{
+        cursor: pointer;
+        right: -40%;
+    }
+    &-reset{
+        cursor: pointer;
+        position: absolute;
+        top: 55%;
+        left:  -10%;
+        transform: translateY(-50%);
     }
 }
 

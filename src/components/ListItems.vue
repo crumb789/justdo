@@ -8,10 +8,10 @@
         <main-list-items v-if="GetAllItemsFilter.length < 1 && !ifSorted && ifDataFilter < 2"></main-list-items>
         <list-items-filter-date v-if="ifDataFilter > 2"></list-items-filter-date>
 <!-- list sorted for id -  -->
-        <list-sorted-for-id v-if="ifSorted && GetAllItemsFilter.length < 1 " class="sorted-list"></list-sorted-for-id>
+        <list-sorted-for-id v-if="ifSorted && GetAllItemsFilter.length < 1 " ></list-sorted-for-id>
 
 <!-- list filter for important-  -->        
-        <important-list-items v-if="GetAllItemsFilter" class="filter-list"></important-list-items>
+        <important-list-items v-if="GetAllItemsFilter"></important-list-items>
 
 
 <!-- placeholder -->
@@ -115,7 +115,7 @@ export default {
 }
 .item{
     position: relative;
-    padding: 10px 20px 10px 50px;
+    padding: 10px 20px 10px 58px;
     border: 1px solid;
     width: 50%;
     margin: 5px 0;

@@ -32,8 +32,8 @@
             <button  v-if="deleteButton === item.id" title="Delete it?"
                 class="delete" @click="DeleteThisitem(item)">
             </button>   
-            <div v-if="deleteButton === item.id"
-                class="item-data">{{ item.dateCreate }}
+            <div v-if="deleteButton === item.id && item.mustDone"
+                class="item-data">{{ item.mustDone }}
             </div>             
         </div>
     </div>
