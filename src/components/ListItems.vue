@@ -217,6 +217,9 @@ export default {
     background-color: aquamarine;
     text-decoration: line-through;
     transition: 0.3s;
+    p{
+        opacity: 0.7;
+    }
 } 
 
 .orange{
@@ -224,10 +227,14 @@ export default {
 }
 .mix{
     background-color: #54f6665c;
+    p{
+        opacity: 0.8;
+    }
 }
 
 .alert{
     color: #000;
-    background-color: #fd9500b8;      
+    background-color: #fd9500b8;   
+    font-weight: 500;   
 }
 </style>

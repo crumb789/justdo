@@ -27,7 +27,7 @@
                 <i class="bi bi-exclamation"></i>
             </button>
 
-                {{ item.text }}
+                <p>{{ item.text }}</p>
 
             <!-- delete btns    -->
             <button  v-if="deleteButton === item.id" title="Delete it?"
