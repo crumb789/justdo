@@ -115,7 +115,7 @@ export default {
 }
 .item{
     position: relative;
-    padding: 10px 20px 10px 58px;
+    padding: 10px 20px 10px 20px;
     border: 1px solid;
     width: 50%;
     margin: 5px 0;
@@ -138,6 +138,28 @@ export default {
     }
 }
 
+.buttonsbox{
+    border: 1px solid #bbb9b7;
+    // background: #fff;
+    position: absolute;
+    width: 70px;
+    height: 100%;
+    top: 0;
+    left:  30px;
+    display: flex;
+    flex-direction: row-reverse;
+    border-radius: 3px;
+    box-shadow: -3px -3px 9px #d1d1d1;
+    opacity: 0;
+    transition: 0.3s all;
+    button{
+        height: 100%;
+    }
+}
+.activeBtns{
+    left: -73px;
+    opacity: 1;
+}
 
 .delete{
     position: absolute;
@@ -145,38 +167,28 @@ export default {
     top: 5px;    
 }
 .check{
-    position: absolute;
-    width: 30px;
-    right: 90%;
-    top: 50%;
-    transform: translateY(-50%);
+    width: 50%;
     animation: fadeUp 1 0.2s ease;
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 1px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
     &-off{
-        position: absolute;
+        // background: #00800021 !important;
+        box-shadow: rgb(204, 219, 232) 2px 2px 4px 0px inset, rgba(255, 255, 255, 0.5) -2px -2px 4px 1px inset;
     }
 }
 
 .important{
-    position: absolute;
-    width: 8px;
-    font-size: 19px;
-    right: 94%;
-    top: 50%;
-    transform: translateY(-50%);
+    width: 50%;
     animation: fadeUp 1 0.2s ease;
+    box-shadow: rgb(204, 219, 232) 2px 2px 4px 0px inset, rgba(255, 255, 255, 0.5) -2px -2px 4px 1px inset;
     i{
         &::before{
             color: #ff5500;
         }
     }
     &-off{
-        position: absolute;
-        width: 8px;
-        font-size: 19px;
-        right: 94%;
-        top: 50%;
-        transform: translateY(-50%);
+        width: 50%;
         animation: fadeUp 1 0.2s ease;
+        box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
         i{
         &::before{
             color: #7064c7;
@@ -216,6 +228,7 @@ export default {
 .green{
     background-color: aquamarine;
     text-decoration: line-through;
+    border-color:  rgb(0, 107, 71);;
     transition: 0.3s;
     p{
         opacity: 0.7;
@@ -224,6 +237,7 @@ export default {
 
 .orange{
     background-color: #f69e545c;
+    border-color: rgb(150, 2, 2);
 }
 .mix{
     background-color: #54f6665c;
@@ -237,4 +251,5 @@ export default {
     background-color: #fd9500b8;   
     font-weight: 500;   
 }
+
 </style>

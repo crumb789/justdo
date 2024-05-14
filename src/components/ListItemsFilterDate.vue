@@ -6,13 +6,14 @@
                     alert: checkToday > Date.parse(item.mustDoneparse) && !item.check }" 
                 @mouseenter="deleteButton = item.id" @mouseleave="deleteButton = false">
                     
+                <div class="buttonsbox" :class="{activeBtns: deleteButton === item.id}">
                     <!-- done check -->
                     <button v-if="!item.check && item.check !== null" title="This is done"
                         class="check button is-ghost" @click="CheckThisitem(item)">
                         <i class="bi bi-check2"></i>
                     </button>
                     <button v-if="item.check  && item.check !== null" title="Back to work"
-                        class="check button is-ghost" @click="CheckOffThisitem(item)">
+                        class="check check-off button is-ghost" @click="CheckOffThisitem(item)">
                         <i class="bi bi-arrow-counterclockwise"></i>
                     </button>
                     
@@ -25,6 +26,7 @@
                         class="important-off button is-ghost" @click="ThisImportant(item)">
                         <i class="bi bi-exclamation"></i>
                     </button>
+                </div>
 
                         <p>{{ item.text }}</p>
 
