@@ -168,17 +168,22 @@ export default {
 }
 .check{
     width: 50%;
-    animation: fadeUp 1 0.2s ease;
+    animation: fadeUp 1 0.1s ease;
     box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 1px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
     &-off{
         // background: #00800021 !important;
         box-shadow: rgb(204, 219, 232) 2px 2px 4px 0px inset, rgba(255, 255, 255, 0.5) -2px -2px 4px 1px inset;
+        i{
+            &::before{
+                color: #08a75d;
+            }
+        }
     }
 }
 
 .important{
     width: 50%;
-    animation: fadeUp 1 0.2s ease;
+    animation: fadeUp 1 0.1s ease;
     box-shadow: rgb(204, 219, 232) 2px 2px 4px 0px inset, rgba(255, 255, 255, 0.5) -2px -2px 4px 1px inset;
     i{
         &::before{
