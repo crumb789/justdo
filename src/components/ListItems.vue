@@ -2,7 +2,7 @@
     <div class="list">
         <check-important></check-important>
 
-        <date-filter></date-filter>                
+        <date-filter v-if="GetAllItemsFilter.length < 1"></date-filter>                
         <select-filter v-if="GetAllItems.length > 1 && !importantFilterTrue"></select-filter>
 
         <main-list-items v-if="GetAllItemsFilter.length < 1 && !ifSorted && ifDataFilter < 2"></main-list-items>
@@ -124,7 +124,7 @@ export default {
     &-data{
         position: absolute;
         right: 35px;
-        top: 7px;
+        top: -8px;
         font-size: 12px;
         border: 1px solid #000;
         border-radius: 3px;
@@ -233,8 +233,11 @@ export default {
 .green{
     background-color: aquamarine;
     text-decoration: line-through;
-    border-color:  rgb(0, 107, 71);;
-    transition: 0.3s;
+    border-left: 1px solid #006b47;
+    border-top: 1px solid #006b47;
+    border-right: 3px solid #006b47;
+    border-bottom: 1px solid #006b47;
+    transition: 0.2s;
     p{
         opacity: 0.7;
     }
@@ -242,7 +245,12 @@ export default {
 
 .orange{
     background-color: #f69e545c;
-    border-color: rgb(150, 2, 2);
+    // border-color: rgb(150, 2, 2);
+    border-left: 1px solid #96020275;
+    border-top: 1px solid #96020275;
+    border-right: 3px solid #96020275;
+    border-bottom: 1px solid #96020275;
+    transform: 0.2s all;
 }
 .mix{
     background-color: #54f6665c;
@@ -254,6 +262,10 @@ export default {
 .alert{
     color: #000;
     background-color: #fd9500b8;   
+    border-left: 1px solid #e56700;
+    border-top: 1px solid #e56700;
+    border-right: 3px solid #e56700;
+    border-bottom: 1px solid #e56700;
     font-weight: 500;   
 }
 

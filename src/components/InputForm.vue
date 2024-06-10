@@ -6,7 +6,7 @@
                 <input id="input-form"  required
                 class="input is-info is-small" type="text" v-model="item" maxlength="80" 
                 placeholder="type here...">
-                <div @click="changeBtnMore" class="button is-ghost" title="more data ">
+                <div @click="changeBtnMore" class="button is-ghost animate__animated animate__fadeInUp" title="more data ">
                     <!-- more data -->
                     <i class="bi bi-arrow-bar-down"></i>
                 </div>
@@ -14,15 +14,15 @@
 
             <!-- /////////////// -->
             <form v-if="!btnMore" @submit.prevent="OnSubmit" >
-                <input id="input-form" 
-                class="input is-info is-small" type="text" v-model="item" maxlength="80" 
+                <input id="input-form " 
+                class="input is-info is-small " type="text" v-model="item" maxlength="80" 
                 placeholder="type here...">
 
-                <label class="label" for="input-date">When should I do it?</label>
+                <label class="label animate__animated animate__lightSpeedInLeft" for="input-date">When should I do it?</label>
                 <input id="input-date" required
                     v-model="mustDone"
-                    class="input input-date is-info is-small " type="date">
-                <div @click="changeBtnMore" class="button is-ghost" title="close">
+                    class="input input-date is-info is-small animate__animated animate__jackInTheBox " type="date">
+                <div @click="changeBtnMore" class="button is-ghost animate__animated animate__backInDown" title="close">
                     <i class="bi bi-arrow-bar-up"></i>
                     <!-- close -->
                 </div>

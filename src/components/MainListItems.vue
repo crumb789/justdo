@@ -7,7 +7,7 @@
             @mouseenter="deleteButton = item.id" 
             @mouseleave="deleteButton = false">
             
-            <div class="buttonsbox" :class="{activeBtns: deleteButton === item.id}">
+            <div class="buttonsbox" :class="{activeBtns: deleteButton === item.id && item.id != 0}">
                 <!-- <div class="buttonsbox" :class="{activeBtns:true}"> -->
                 <!-- done check -->
                 <button v-if="!item.check && item.check !== null" title="This is done"
