@@ -83,7 +83,7 @@ export default {
     &-date{
         position: absolute;
         display: flex;
-        top: -30px;
+        top: -35px;
         right: 31%;
         justify-content: space-around;
         align-items: center;

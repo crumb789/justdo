@@ -5,7 +5,7 @@
             alert: checkToday > Date.parse(item.mustDoneparse) && !item.check }" 
         @mouseenter="deleteButton = item.id" @mouseleave="deleteButton = false">
                 
-                <div class="buttonsbox" :class="{activeBtns: deleteButton === item.id}">
+                <div class="buttonsbox" :class="{activeBtns: deleteButton === item.id && item.id != 0}">
                     <!-- done check -->
                     <button v-if="!item.check && item.check !== null" title="This is done"
                         class="check button is-ghost" @click="CheckThisitem(item)">
@@ -33,8 +33,15 @@
             <button  v-if="deleteButton === item.id" title="Delete it?"
                 class="delete" @click="DeleteThisitem(item)">
             </button>   
-            <div v-if="deleteButton === item.id && item.mustDone"
-                class="item-data"> {{ item.mustDone }} <!-- {{ item.dateCreate }} -->
+            <div v-if="deleteButton === item.id && item.mustDone && !rotateBtn"
+                class="item-data "> {{ item.mustDone }} 
+                <i @click="rotateBtn" class="bi bi-arrow-repeat rotate" ></i>
+                <!-- {{ item.dateCreate }} -->
+            </div>
+            <div v-if="deleteButton === item.id && item.dateCreate && rotateBtn"
+                class="item-data ">creted: {{ item.dateCreate }} 
+                <i @click="rotateBtn" class="bi bi-arrow-repeat rotate" ></i>
+                <!-- {{ item.dateCreate }} -->
             </div>             
         </div>
     </div>
@@ -45,7 +52,8 @@
 export default {
     data() {
         return{
-            deleteButton: false
+            deleteButton: false,
+            rotateBtn: false,
         }
     },
     methods:{
@@ -64,6 +72,9 @@ export default {
         },
         ThisImportantOff(item){
             this.$store.commit('ImportantItemOff', item)
+        },
+        rotateBtnActivated(){
+            // this.rotateBtn = !this.rotateBtn
         }
     },
     computed:{
@@ -76,3 +87,10 @@ export default {
     }
 }
 </script>
+
+<style lang="scss" scoped>
+.rotate{
+    font-size: 15px;
+    cursor: pointer;
+}
+</style>

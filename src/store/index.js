@@ -2,7 +2,7 @@ import { createStore } from 'vuex';
 
 export default createStore({
   state: {
-    sortedList: false,
+    sortedList: true,
     importantFilter: false,
     ListItems:[
       {

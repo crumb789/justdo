@@ -3,8 +3,8 @@
         <!-- <button @click="changeSorted">fdsfds</button>
         <button @click="changeSortedBack">fdsfds</button> -->
         <select @change="changeSorted">
-            <option> Older </option>
             <option> Newer </option>
+            <option> Older </option>
         </select>
 
         
@@ -38,7 +38,7 @@ export default {
 .select{
     &-filter{
         position: absolute;
-        top: -30px;
+        top: -35px;
         right: 25%;
     }
     
