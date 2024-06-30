@@ -12,7 +12,8 @@ export default createStore({
         dateCreate: '2.1.2023',
         important: null,
         mustDone: null,
-        mustDoneparse: null
+        mustDoneparse: null,
+        showDataCreated: false
       }
     ],
     ListItemsFilter:[

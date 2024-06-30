@@ -124,7 +124,7 @@ export default {
     &-data{
         position: absolute;
         right: 35px;
-        top: -8px;
+        top: -14px;
         font-size: 12px;
         border: 1px solid #000;
         border-radius: 3px;

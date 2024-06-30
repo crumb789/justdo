@@ -36,9 +36,18 @@
             <button  v-if="deleteButton === item.id" title="Delete it?"
                 class="delete" @click="DeleteThisitem(item)">
             </button>   
-            <div v-if="deleteButton === item.id && item.mustDone"
-                class="item-data">{{ item.mustDone }} <!-- {{ item.dateCreate }} -->
-            </div>             
+                    <!-- DATA MUST DONE -->
+            <div v-if="deleteButton === item.id && item.mustDone && rotateBtn"
+                class="item-data animate__animated animate__flipInY">must done: {{ item.mustDone }} 
+                <i  @click="rotateBtnActivated" class="bi bi-arrow-repeat rotate" ></i>
+                <!-- {{ item.dateCreate }} -->
+            </div>
+                    <!-- DATA CREATED -->
+            <div v-if="deleteButton === item.id && item.dateCreate && !rotateBtn "
+                class="item-data animate__animated animate__flipInY">creted: {{ item.dateCreate }} 
+                <i v-if="item.mustDone" @click="rotateBtnActivated" class="bi bi-arrow-repeat rotate" ></i>
+                <!-- {{ item.dateCreate }} -->
+            </div>               
         </div>
     </div>
 </template>
@@ -49,7 +58,8 @@
 export default {
     data() {
         return{
-            deleteButton: false
+            deleteButton: false,
+            rotateBtn: false,
         }
     },
     methods:{
@@ -68,6 +78,9 @@ export default {
         },
         ThisImportantOff(item){
             this.$store.commit('ImportantItemOff', item)
+        },
+        rotateBtnActivated(){
+            this.rotateBtn = !this.rotateBtn
         }
     },
     computed:{

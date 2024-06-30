@@ -3,7 +3,7 @@
         <div class="item box" 
         :class="{green: item.check, orange: item.important, mix: item.check && item.important, 
             alert: checkToday > Date.parse(item.mustDoneparse) && !item.check }" 
-        @mouseenter="deleteButton = item.id" @mouseleave="deleteButton = false">
+        @mouseenter="deleteButton = item.id" @mouseleave="deleteButton = false , rotateBtn = false">
                 
                 <div class="buttonsbox" :class="{activeBtns: deleteButton === item.id && item.id != 0}">
                     <!-- done check -->
@@ -33,14 +33,16 @@
             <button  v-if="deleteButton === item.id" title="Delete it?"
                 class="delete" @click="DeleteThisitem(item)">
             </button>   
-            <div v-if="deleteButton === item.id && item.mustDone && !rotateBtn"
-                class="item-data "> {{ item.mustDone }} 
-                <i @click="rotateBtn" class="bi bi-arrow-repeat rotate" ></i>
+                    <!-- DATA MUST DONE -->
+            <div v-if="deleteButton === item.id && item.mustDone && rotateBtn"
+                class="item-data animate__animated animate__flipInY">must done: {{ item.mustDone }} 
+                <i  @click="rotateBtnActivated" class="bi bi-arrow-repeat rotate" ></i>
                 <!-- {{ item.dateCreate }} -->
             </div>
-            <div v-if="deleteButton === item.id && item.dateCreate && rotateBtn"
-                class="item-data ">creted: {{ item.dateCreate }} 
-                <i @click="rotateBtn" class="bi bi-arrow-repeat rotate" ></i>
+                    <!-- DATA CREATED -->
+            <div v-if="deleteButton === item.id && item.dateCreate && !rotateBtn "
+                class="item-data animate__animated animate__flipInY">creted: {{ item.dateCreate }} 
+                <i v-if="item.mustDone" @click="rotateBtnActivated" class="bi bi-arrow-repeat rotate" ></i>
                 <!-- {{ item.dateCreate }} -->
             </div>             
         </div>
@@ -74,7 +76,8 @@ export default {
             this.$store.commit('ImportantItemOff', item)
         },
         rotateBtnActivated(){
-            // this.rotateBtn = !this.rotateBtn
+            this.rotateBtn = !this.rotateBtn
+            console.log('rotate!!!', this.rotateBtn)
         }
     },
     computed:{
@@ -88,7 +91,7 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss" >
 .rotate{
     font-size: 15px;
     cursor: pointer;
