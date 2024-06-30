@@ -1,5 +1,7 @@
 <template>
+    <welcome-animation></welcome-animation>
   <div class="container">
+
       <div class="main">
           <h1  router-link='/home' class="title" @click="counterTitle">{{ title }} <span><counter-comp></counter-comp></span></h1>
           <h5 class="title-counter" ></h5>
@@ -20,6 +22,7 @@
 import InputForm from '@/components/InputForm.vue'
 import ListItems from '@/components/ListItems.vue'
 import CounterComp from '@/components/CounterComp.vue'
+import WelcomeAnimation from '@/components/UI/WelcomeAnimation.vue'
 
 
 
@@ -28,6 +31,7 @@ components: {
       InputForm,
       ListItems,
       CounterComp,
+      WelcomeAnimation,
   },
   data() {
       return{
