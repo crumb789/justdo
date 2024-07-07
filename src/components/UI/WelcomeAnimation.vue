@@ -1,13 +1,13 @@
 <template>
-    <div class="welcome" :class="{closeModal: opneModalSpace}">
-        <div class="welcome-text animate__animated animate__backInDown" :class="{closeModalText: opneModalSpace}">
+    <div class="welcome" :class="{closeModal: openModalSpace}">
+        <div class="welcome-text animate__animated animate__backInDown" :class="{closeModalText: openModalSpace}">
             {{ welcome }}
             <div class="circle-box">
                 <div class="circle-item" v-for="i in circles" :key="i"></div>
             </div>
         </div>
-        <div class=" welcome-btn animate__animated animate__backInUp" :class="{closeModalBtn: opneModalSpace}">
-            <i @click="closeModalSpace" class="bi bi-card-checklist"></i>
+        <div class=" welcome-btn animate__animated animate__backInUp" :class="{closeModalBtn: openModalSpace}">
+            <i @click="closeModalSpace" class="bi bi-forward"></i>
         </div>
     </div>
 </template>
@@ -20,13 +20,14 @@ export default {
         return{
             welcome: 'For the cause',
             text: [],
-            opneModalSpace: false,
+            openModalSpace: false,
             circles: 10
         }
     },
     methods:{
         closeModalSpace(){
-            this.opneModalSpace = !this.opneModalSpace
+            this.openModalSpace = !this.openModalSpace
+            this.$store.commit('modalClose')
         },
         textGo(){
             // // this.text.push(this.welcome)
@@ -41,6 +42,11 @@ export default {
             // this.text = this.text.join('')
             // console.log(this.text) 
             console.log('fix welcome')
+        }
+    },
+    computed: {
+        checkModal(){
+            return this.$store.state.modalWindow
         }
     },
     mounted() {
@@ -69,19 +75,22 @@ export default {
         position: absolute;
         top: 60%;
         cursor: pointer;
-        color: #5f9ea0;
+        color: #000;
         :hover{
             transition: 0.2s all;
-            font-size: 55px;
+            // font-size: 55px;
+            color: #648f91;
         }
     }
     &-text{
+        box-shadow: 2px 2px 1px #000;
         border: 1px solid #000;
         padding: 50px 50px 220px 50px;
         border-radius: 15px;
         text-decoration: underline;
     }
 }
+
 
 .closeModal{
     animation: opacityFade 1s 1 ease;

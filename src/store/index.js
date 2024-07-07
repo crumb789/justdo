@@ -79,6 +79,7 @@ export default createStore({
       },
     ],
     years: [2023,2024,2025,2026,2027,2028,2029,2030],
+    modalWindow: true,
   },
   getters: {
     today(){
@@ -214,6 +215,9 @@ export default createStore({
     resetDataToSorted(state){
       state.DataToSorted = []
     },
+    modalClose(state){
+      state.modalWindow = false
+    },
 
 
     ////proverka Localhost
@@ -227,6 +231,10 @@ export default createStore({
       if(localStorage.getItem('FilterDate')){
         state.DataToSorted = JSON.parse(localStorage.FilterDate)
       }
+
+      if(sessionStorage.getItem('modalWindow')){
+        state.modalWindow = JSON.parse(sessionStorage.modalWindow)
+      }      
   },
     
   },

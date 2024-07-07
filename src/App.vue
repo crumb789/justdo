@@ -17,7 +17,11 @@ export default {
   },
   mounted(){
     console.log( new Date().getMonth() + 1 )
-  }
+  },
+    beforeMount() {
+      this.$store.commit('initialiseListItems')
+      // this.$store.commit('initialiseSortedList')
+  },  
 }
 </script>
 

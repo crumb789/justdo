@@ -5,7 +5,8 @@
         <date-filter v-if="GetAllItemsFilter.length < 1"></date-filter>                
         <select-filter v-if="GetAllItems.length > 1 && !importantFilterTrue"></select-filter>
 
-        <main-list-items v-if="GetAllItemsFilter.length < 1 && !ifSorted && ifDataFilter < 2"></main-list-items>
+        <!-- <main-list-items v-if="GetAllItemsFilter.length < 1 && !ifSorted && ifDataFilter < 2"></main-list-items> -->
+        <main-list-items v-if="GetAllItemsFilter.length < 1 && !ifSorted "></main-list-items>
         <list-items-filter-date v-if="ifDataFilter > 2"></list-items-filter-date>
 <!-- list sorted for id -  -->
         <list-sorted-for-id v-if="ifSorted && GetAllItemsFilter.length < 1 " ></list-sorted-for-id>
@@ -93,10 +94,10 @@ export default {
             this.$store.commit('ImportantItemOff', item)
         }
     },
-    beforeMount() {
-        this.$store.commit('initialiseListItems')
-        // this.$store.commit('initialiseSortedList')
-    },  
+    // beforeMount() {
+    //     this.$store.commit('initialiseListItems')
+    //     // this.$store.commit('initialiseSortedList')
+    // },  
 }
 
 </script>

@@ -44,7 +44,7 @@
                 class="item-data animate__animated animate__flipInY">creted: {{ item.dateCreate }} 
                 <i v-if="item.mustDone" @click="rotateBtnActivated" class="bi bi-arrow-repeat rotate" ></i>
                 <!-- {{ item.dateCreate }} -->
-            </div>             
+            </div>        
         </div>
     </div>
 </template>
@@ -96,4 +96,5 @@ export default {
     font-size: 15px;
     cursor: pointer;
 }
+
 </style>

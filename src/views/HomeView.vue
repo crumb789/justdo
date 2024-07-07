@@ -1,5 +1,5 @@
 <template>
-    <welcome-animation></welcome-animation>
+    <welcome-animation v-if="checkModal"></welcome-animation>
   <div class="container">
 
       <div class="main">
@@ -55,6 +55,9 @@ components: {
       GetAllItems(){
           return this.$store.state.ListItems
       },
+      checkModal(){
+          return this.$store.state.modalWindow
+      }
   },
   mounted(){
       // this.counterTitle()
