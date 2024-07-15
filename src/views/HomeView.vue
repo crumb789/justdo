@@ -3,8 +3,8 @@
   <div class="container">
 
       <div class="main">
-          <h1  router-link='/home' class="title" @click="counterTitle">{{ title }} <span><counter-comp></counter-comp></span></h1>
-          <h5 class="title-counter" ></h5>
+          <h1  class="title" @click="counterTitle">{{ title }} <span><counter-comp></counter-comp></span></h1>
+          <h5  class="title-counter" ></h5>
       </div>
 
 <!-- inputs -->

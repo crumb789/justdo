@@ -42,7 +42,7 @@
             </div>
                     <!-- DATA CREATED -->
             <div v-if="deleteButton === item.id && item.dateCreate && !rotateBtn "
-                class="item-data animate__animated animate__flipInY">creted: {{ item.dateCreate }} 
+                class="item-data animate__animated animate__flipInY">created: {{ item.dateCreate }} 
                 <i v-if="item.mustDone" @click="rotateBtnActivated" class="bi bi-arrow-repeat rotate" ></i>
                 <!-- {{ item.dateCreate }} -->
             </div>                 

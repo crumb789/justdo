@@ -2,10 +2,13 @@
     <div class="list">
         <check-important></check-important>
 
-        <date-filter v-if="GetAllItemsFilter.length < 1"></date-filter>                
+<!-- <date-filter v-if="GetAllItemsFilter.length < 1"></date-filter>                 -->
+        <date-filter v-if="false"></date-filter> 
+
+        
         <select-filter v-if="GetAllItems.length > 1 && !importantFilterTrue"></select-filter>
 
-        <!-- <main-list-items v-if="GetAllItemsFilter.length < 1 && !ifSorted && ifDataFilter < 2"></main-list-items> -->
+<!-- <main-list-items v-if="GetAllItemsFilter.length < 1 && !ifSorted && ifDataFilter < 2"></main-list-items> -->
         <main-list-items v-if="GetAllItemsFilter.length < 1 && !ifSorted "></main-list-items>
         <list-items-filter-date v-if="ifDataFilter > 2"></list-items-filter-date>
 <!-- list sorted for id -  -->
@@ -16,7 +19,9 @@
 
 
 <!-- placeholder -->
-        <placeholder-items-empty v-if="false"></placeholder-items-empty>
+        <placeholder-items-empty 
+            v-if="!GetAllItems.length">
+        </placeholder-items-empty>
 
     </div>
 </template>
