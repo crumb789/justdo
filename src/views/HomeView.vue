@@ -15,6 +15,7 @@
       <list-items></list-items>       
       
   </div>
+  <footer-comp></footer-comp>
 </template>
 
 
@@ -23,6 +24,8 @@ import InputForm from '@/components/InputForm.vue'
 import ListItems from '@/components/ListItems.vue'
 import CounterComp from '@/components/CounterComp.vue'
 import WelcomeAnimation from '@/components/UI/WelcomeAnimation.vue'
+import FooterComp from '@/components/FooterComp.vue'
+
 
 
 
@@ -32,6 +35,7 @@ components: {
       ListItems,
       CounterComp,
       WelcomeAnimation,
+      FooterComp
   },
   data() {
       return{
@@ -77,6 +81,7 @@ components: {
 }
 .title{
   position: relative;
+  font-size: 40px;
   width: 282px;
   margin: 0 auto;
   font-family: "Reem Kufi Ink", sans-serif;

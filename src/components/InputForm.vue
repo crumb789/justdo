@@ -30,13 +30,7 @@
             
             <div class="data">
                 <span v-if="actualDateForItems[0]" class="data-number data-box data-box-line">
-                    {{ actualDateForItems[0] + ' ' }}
-                </span>
-                <span v-if="actualDateForItems[1]" class="data-months data-box data-box-line">
-                    {{ actualDateForItems[1] + ' '  }}
-                </span>
-                <span v-if="actualDateForItems[2]" class="data-year data-box data-box-line">
-                    {{ actualDateForItems[2] }}
+                    {{ actualDateForItems }}
                 </span>
             </div>
         </div>
@@ -75,6 +69,7 @@ export default {
 
                 this.item = ''
                 this.btnMore = true
+                this.mustDone = ''
             }
             if(this.item && this.item !== ' ' && this.item !== '  ' && this.item !== '   ' && !this.mustDone){
                 /* create body item */
@@ -91,12 +86,16 @@ export default {
 
                 this.item = ''
                 this.btnMore = true
+                this.mustDone = ''
             }
             else false
             
         },
         changeBtnMore(){
             this.btnMore = !this.btnMore
+            if(this.btnMore == true) {
+                this.mustDone = ''
+            }
         }
     },
     computed:{

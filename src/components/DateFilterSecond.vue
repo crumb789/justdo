@@ -1,0 +1,110 @@
+<template>
+    <div class="select select-date is-small is-rounded" v-if="howManyItems > 0">
+
+        <!--  btn-calendar -->
+        <span  v-if="showBtnDataChoise" @click="showBtnDataChoise = false" class="data-show data-box" title="filter by completion date">
+            <i class="bi bi-calendar4-week"></i>
+        </span> 
+
+
+        <form v-if="!showBtnDataChoise">
+            <input type="date" class="input input-date is-info is-small"
+            v-model="dataSelect" @change="changeSortedDate">
+        </form>
+
+        <!-- btn-reset -->
+        <span v-if="!showBtnDataChoise"  @click="resetDataToSorted" class="data-reset data-box" title="reset date?">
+            <i class="bi bi-x-circle"></i>
+        </span> 
+    </div>
+</template>
+
+<script>
+export default {
+    data() {
+        return{
+            dataSelect: '',
+            showBtnDataChoise: true
+        }
+    },
+    methods:{
+        changeSortedDate(){
+            // this.$store.commit('sortedItemsToDate', this.selectedDate)
+            this.$store.commit('calendarMustDone', this.dataSelect) 
+        },
+        changeSortedMonths(){
+            this.$store.commit('sortedItemsToMonth', this.selectedMonth )
+        },
+        changeSortedYears(){
+            this.$store.commit('sortedItemsToYears', this.selectedYear)
+        },
+        resetDataToSorted(){
+            this.$store.commit('resetDataToSorted')
+            this.$store.commit('calendarMustDone', '')
+            this.dataSelect = ''
+            this.showBtnDataChoise = true
+
+        }
+    },
+    computed:{
+        howManyItems(){
+            return this.$store.state.ListItems.length
+        },
+        datesGetters(){
+            return this.$store.state.dates
+        },
+        monthsGetters(){
+            return this.$store.state.months
+        },
+        yearsGetters(){
+            return this.$store.state.years
+        },
+        ifNeedResetdata(){
+            return this.$store.state.DataToSorted.length
+        }
+    }
+}
+</script>
+
+
+
+
+<style lang="scss" scoped>
+.select{
+    &-date{
+        position: absolute;
+        display: flex;
+        top: -33px;
+        right: 31.5%;
+        justify-content: space-around;
+        align-items: center;
+        ///min-width: 255px;
+    }
+}
+
+.data{
+    position: absolute;
+    top: 16px;
+    right: -23%;
+    transform: translateY(-50%);
+    &-show{
+        cursor: pointer;
+        right: 0%;
+    }
+    &-reset{
+        cursor: pointer;
+        position: absolute;
+        top: 50%;
+        left:  2%;
+        transform: translateY(-50%);
+        i{
+            position: absolute;
+            transform: translateY(-40%);
+        }
+    }
+}
+
+.navbar-link:not(.is-arrowless)::after, .select:not(.is-multiple):not(.is-loading)::after{
+    content: none;
+}
+</style>

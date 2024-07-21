@@ -56,7 +56,8 @@
 export default {
     data() {
         return{
-            deleteButton: false
+            deleteButton: false,
+            rotateBtn: false,
         }
     },
     methods:{
@@ -75,6 +76,9 @@ export default {
         },
         ThisImportantOff(item){
             this.$store.commit('ImportantItemOff', item)
+        },
+        rotateBtnActivated(){
+            this.rotateBtn = !this.rotateBtn
         }
     },
     computed:{

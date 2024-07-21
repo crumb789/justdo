@@ -2,27 +2,26 @@
     <div class="list">
         <check-important></check-important>
 
-<!-- <date-filter v-if="GetAllItemsFilter.length < 1"></date-filter>                 -->
+        <!-- ИНПУТ ДАТЫ -->
+        <!-- <date-filter v-if="GetAllItemsFilter.length < 1"></date-filter>                 -->
         <date-filter v-if="false"></date-filter> 
-
+        <date-filter-second></date-filter-second>
         
         <select-filter v-if="GetAllItems.length > 1 && !importantFilterTrue"></select-filter>
 
 <!-- <main-list-items v-if="GetAllItemsFilter.length < 1 && !ifSorted && ifDataFilter < 2"></main-list-items> -->
-        <main-list-items v-if="GetAllItemsFilter.length < 1 && !ifSorted "></main-list-items>
-        <list-items-filter-date v-if="ifDataFilter > 2"></list-items-filter-date>
+        <main-list-items v-if="GetAllItemsFilter.length < 1 && !ifSorted && !ifDataFilter"></main-list-items>
+        <list-items-filter-date v-if="ifDataFilter"></list-items-filter-date>
+
 <!-- list sorted for id -  -->
-        <list-sorted-for-id v-if="ifSorted && GetAllItemsFilter.length < 1 " ></list-sorted-for-id>
+        <list-sorted-for-id v-if="ifSorted && GetAllItemsFilter.length < 1 && !ifDataFilter" ></list-sorted-for-id>
 
 <!-- list filter for important-  -->        
         <important-list-items v-if="GetAllItemsFilter"></important-list-items>
 
 
 <!-- placeholder -->
-        <placeholder-items-empty 
-            v-if="!GetAllItems.length">
-        </placeholder-items-empty>
-
+        <placeholder-items-empty ></placeholder-items-empty>
     </div>
 </template>
 
@@ -35,6 +34,7 @@ import PlaceholderItemsEmpty from './PlaceholderItemsEmpty.vue'
 import MainListItems from './MainListItems.vue'
 import ListSortedForId from './ListSortedForId.vue'
 import ImportantListItems from './ImportantListItems.vue'
+import DateFilterSecond from './DateFilterSecond.vue'
 
 export default {
     components: {
@@ -46,6 +46,7 @@ export default {
         MainListItems,
         ListSortedForId,
         ImportantListItems,
+        DateFilterSecond,
     },
     data() {
         return{
@@ -74,10 +75,13 @@ export default {
             return this.$store.state.importantFilter
         },
         ifDataFilter(){
-            return this.$store.state.DataToSorted.length
+            return this.$store.state.DataToSorted
         },
         checkToday(){
             return Date.parse(this.$store.getters.today)
+        },
+        checkFilterItemsToDate(){
+            return this.$store.getters.filterToDate.length
         }
     },
     methods:{
@@ -154,7 +158,7 @@ export default {
     left:  30px;
     display: flex;
     flex-direction: row-reverse;
-    border-radius: 3px;
+    border-radius: 5px;
     box-shadow: -3px -3px 9px #d1d1d1;
     opacity: 0;
     transition: 0.3s all;

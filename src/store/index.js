@@ -20,6 +20,7 @@ export default createStore({
       /* empty */
     ],
     DataToSorted: [],
+    Filter: [],
     dates: [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31],
     // months: 
     // [
@@ -106,25 +107,9 @@ export default createStore({
       }
     },
     filterToDate(state){
-      let arr;
-      let data 
-      (state.DataToSorted[1] == 'January') ? data = state.DataToSorted[0] + '.' + 1 + '.' + state.DataToSorted[2]: false;
-      (state.DataToSorted[1] == 'February') ? data = state.DataToSorted[0] + '.' + 2 + '.' +  state.DataToSorted[2] : false;
-      (state.DataToSorted[1] == 'March') ? data = state.DataToSorted[0] + '.' + 3 + '.' +  state.DataToSorted[2] : false ;
-      (state.DataToSorted[1] == 'April') ? data = state.DataToSorted[0] + '.' + 4 + '.' +  state.DataToSorted[2] : false;
-      (state.DataToSorted[1] == 'May') ? data = state.DataToSorted[0] + '.' + 5 + '.' +  state.DataToSorted[2] : false;
-      (state.DataToSorted[1] == 'June') ? data = state.DataToSorted[0] + '.' + 6 + '.' +  state.DataToSorted[2] : false;
-      (state.DataToSorted[1] == 'July') ? data = state.DataToSorted[0] + '.' + 7 + '.' +  state.DataToSorted[2] : false;
-      (state.DataToSorted[1] == 'August') ? data = state.DataToSorted[0] + '.' + 8 + '.' +  state.DataToSorted[2] : false;
-      (state.DataToSorted[1] == 'September') ? data = state.DataToSorted[0] + '.' + 9 + '.' +  state.DataToSorted[2] : false;
-      (state.DataToSorted[1] == 'October') ? data = state.DataToSorted[0] + '.' + 10 + '.' +  state.DataToSorted[2] : false;
-      (state.DataToSorted[1] == 'November') ? data = state.DataToSorted[0] + '.' + 11 + '.' +  state.DataToSorted[2] : false;
-      (state.DataToSorted[1] == 'December') ? data = state.DataToSorted[0] + '.' + 12 + '.' +  state.DataToSorted[2] : false;
-
-      
-      arr = state.ListItems.filter( i => i.dateCreate == data) ;
-      
-      return arr;
+      state.Filter = state.ListItems.filter( i => i.mustDone == state.DataToSorted) ;
+      console.log(state.Filter)
+      return state.Filter
     }
 
   },
@@ -203,6 +188,24 @@ export default createStore({
     },
 
     ////////////
+    calendarMustDone(state, date){
+      state.DataToSorted = date
+      state.DataToSorted = state.DataToSorted.split('-').reverse()
+      // удаляем нули перед цифрами для нужной формы
+      // if(state.DataToSorted[0] <= 9 ){
+      //   console.log(state.DataToSorted[0])
+      //   state.DataToSorted[0] = state.DataToSorted[0].replace('0', '')
+      // }
+      // if(state.DataToSorted[1] <= 9 ){
+      //   console.log(state.DataToSorted[1])
+      //   state.DataToSorted[1] = state.DataToSorted[1].replace('0', '')
+      // }
+
+      state.DataToSorted = state.DataToSorted.join('.')
+      console.log(state.DataToSorted)
+    },
+
+
     sortedItemsToDate(state, date){
       (date !== 0 && date) ? state.DataToSorted[0] = date : false ;
     },
