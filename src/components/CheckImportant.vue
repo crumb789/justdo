@@ -1,7 +1,10 @@
 <template>
-    <div class="check-important" v-if="showButtonImportant > 0">
-        <label class="checkbox">
-            <input type="checkbox" v-model="checkbox" @click="showOnlyImportant" />
+    <div class="checked check-important" v-if="showButtonImportant > 0">
+        <div class="checked-circle">
+            <span class="checked-circle_line" :class="{checkbox: checkbox == false }" ></span>
+        </div>
+        <label class="checkbox-label" for="important-tag" >
+            <input type="checkbox" class="checkbox" id="important-tag" name="important-tag" v-model="checkbox" @click="showOnlyImportant" />
             only important
         </label>
         <!-- <button @click="showOnlyImportant">fdsfsd</button> -->
@@ -42,24 +45,83 @@ export default {
 
 
 <style lang="scss">
-.check{
-    &-important{
-        position: absolute;
-        top: -30px;
-        left: 25%;
-    }
-    
+.checkbox{
+    position: absolute;
+    z-index: -100;
+    opacity: 0;
 }
 
-input[type='checkbox']{
-    // display: none;
-    &::before{
-        content: '';
-        width: 20px;
-        height: 20px;
-        color: red;
+.checked{
+    position: absolute;
+    width: 200px;
+    left: 24%;
+    top: -35px;
+    &-circle{
+        &::before{
+            content: '';
+            position: absolute;
+            width: 15px;
+            height: 15px;
+            border: 2px solid #c87669;
+            top: 50%;
+            transform: translateY(-50%);
+            left: 30px;
+            border-radius: 100%;
+        }
+        &_line{
+            transition: 0.8s all;
+            &::before{
+                content: "";
+                position: absolute;
+                width: 13px;
+                height: 2px;
+                background: #3e8ed0;
+                top: 10px;
+                transform: translateY(-50%);
+                left: 36px;
+                rotate: 317deg;
+                border-top-right-radius: 1px;
+                border-bottom-right-radius: 1px;
+            }
+            &::after{
+                content: "";
+                position: absolute;
+                width: 8px;
+                height: 2px;
+                background: #3e8ed0;
+                top: 11.5px;
+                transform: translateY(-50%);
+                left: 31px;
+                rotate: 43deg;
+                border-top-left-radius: 1px;
+                border-bottom-left-radius: 1px;
+            }
+        }
     }
 }
 
+@media(max-width: 1024px){
+    .check{
+        &-important{
+            left: 15%;
+        }
+    }
+}
 
+@media(max-width: 768px){
+    .check{
+        &-important{
+            left: 12.5%;
+        }
+    }
+}
+
+@media(max-width: 425px){
+    .check{
+        &-important{
+            left: 2.5%;
+            top: -40px;
+        }
+    }
+}
 </style>

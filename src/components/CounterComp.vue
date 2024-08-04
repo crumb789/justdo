@@ -115,5 +115,9 @@ export default {
     }
 }
 
-
+@media(max-width: 425px){
+    .counter{
+        position: absolute;
+    }
+}
 </style>

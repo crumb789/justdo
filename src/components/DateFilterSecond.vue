@@ -1,5 +1,5 @@
 <template>
-    <div class="select select-date is-small is-rounded" v-if="howManyItems > 0">
+    <div class="select select-filter-date is-small is-rounded" v-if="howManyItems > 0">
 
         <!--  btn-calendar -->
         <span  v-if="showBtnDataChoise" @click="showBtnDataChoise = false" class="data-show data-box" title="filter by completion date">
@@ -8,7 +8,7 @@
 
 
         <form v-if="!showBtnDataChoise">
-            <input type="date" class="input input-date is-info is-small"
+            <input type="date" class="input input-date is-info is-small" id="date"
             v-model="dataSelect" @change="changeSortedDate">
         </form>
 
@@ -69,16 +69,18 @@ export default {
 
 
 
-<style lang="scss" scoped>
+<style lang="scss" >
 .select{
-    &-date{
-        position: absolute;
-        display: flex;
-        top: -33px;
-        right: 31.5%;
-        justify-content: space-around;
-        align-items: center;
-        ///min-width: 255px;
+    &-filter{
+        &-date{
+            position: absolute;
+            display: flex;
+            top: -33px;
+            right: 31.5%;
+            justify-content: space-around;
+            align-items: center;
+            ///min-width: 255px;
+        }
     }
 }
 
@@ -103,8 +105,31 @@ export default {
         }
     }
 }
-
+#data{
+    width: 300px;
+}
 .navbar-link:not(.is-arrowless)::after, .select:not(.is-multiple):not(.is-loading)::after{
     content: none;
+}
+
+@media (max-width: 1024px){
+    .select{
+        &-filter{
+            &-date{
+                right: 25%;
+            }
+        }
+    }
+}
+
+@media (max-width: 768px){
+    .select{
+        &-filter{
+            &-date{
+                right: 12.5%;
+                top: -70px;
+            }
+        }
+    }
 }
 </style>

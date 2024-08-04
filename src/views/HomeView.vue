@@ -3,7 +3,11 @@
   <div class="container">
 
       <div class="main">
-          <h1  class="title" @click="counterTitle">{{ title }} <span><counter-comp></counter-comp></span></h1>
+          <h1  class="title" @click="counterTitle">{{ title }} 
+            <span>
+                <counter-comp></counter-comp>
+            </span>
+        </h1>
           <h5  class="title-counter" ></h5>
       </div>
 
@@ -108,5 +112,12 @@ components: {
   &:focus{
       box-shadow: none;
   }
+}
+
+@media(max-width: 425px){
+    .title{
+        position: relative;
+        margin-bottom: 50px;
+    }
 }
 </style>

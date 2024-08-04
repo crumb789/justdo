@@ -4,10 +4,10 @@
 
         <!-- ИНПУТ ДАТЫ -->
         <!-- <date-filter v-if="GetAllItemsFilter.length < 1"></date-filter>                 -->
-        <date-filter v-if="false"></date-filter> 
         <date-filter-second></date-filter-second>
         
-        <select-filter v-if="GetAllItems.length > 1 && !importantFilterTrue"></select-filter>
+        <select-filter v-if="GetAllItems.length > 1 && !importantFilterTrue">
+        </select-filter>
 
 <!-- <main-list-items v-if="GetAllItemsFilter.length < 1 && !ifSorted && ifDataFilter < 2"></main-list-items> -->
         <main-list-items v-if="GetAllItemsFilter.length < 1 && !ifSorted && !ifDataFilter"></main-list-items>
@@ -28,7 +28,6 @@
 <script>
 import SelectFilter from './SelectFilter.vue'
 import CheckImportant from './CheckImportant.vue'
-import DateFilter from './DateFilter.vue'
 import ListItemsFilterDate from './ListItemsFilterDate.vue'
 import PlaceholderItemsEmpty from './PlaceholderItemsEmpty.vue'
 import MainListItems from './MainListItems.vue'
@@ -40,7 +39,6 @@ export default {
     components: {
         SelectFilter,
         CheckImportant,
-        DateFilter,
         ListItemsFilterDate,
         PlaceholderItemsEmpty,
         MainListItems,
@@ -153,7 +151,7 @@ export default {
     // background: #fff;
     position: absolute;
     width: 70px;
-    height: 100%;
+    height: 44px;
     top: 0;
     left:  30px;
     display: flex;
@@ -279,4 +277,48 @@ export default {
     font-weight: 500;   
 }
 
+@media(max-width:1024px){
+    .item{
+        width: 70%;
+    }
+}
+@media(max-width:768px){
+    .list{
+        margin: 65px 0px 60px 0px;
+        
+        &-item{
+            &:nth-child(0){
+                margin-top: 6px !important; 
+            }
+        }
+    }
+    .item{
+        width: 75%;
+    }
+}
+@media(max-width:425px){
+    .item{
+        width: 95%;
+    }
+    .activeBtns{
+        border-radius: 6px 2px 2px 6px;
+        left: 1px;
+        opacity: 1;
+        z-index: 100;
+    }
+    .buttonsbox{
+        top: -22px;
+        height: 36px;
+        border: none;
+        border-radius: 4px;
+        box-shadow: none;
+        background-color: #f0f8ff;
+    }
+    .check{
+        border-radius: 4px;
+    }
+    .important{  
+        border-radius: 4px;
+    }
+}
 </style>

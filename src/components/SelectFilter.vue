@@ -43,4 +43,20 @@ export default {
     }
     
 }
+@media(max-width: 1024px){
+    .select{
+        &-filter{
+            right: 15%;
+        }
+        
+    }
+}
+@media(max-width: 768px){
+    .select{
+        &-filter{
+            right: 12.5%;
+        }
+        
+    }
+}
 </style>
