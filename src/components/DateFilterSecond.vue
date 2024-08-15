@@ -97,7 +97,7 @@ export default {
         cursor: pointer;
         position: absolute;
         top: 50%;
-        left:  2%;
+        left:  -22px;
         transform: translateY(-50%);
         i{
             position: absolute;

@@ -4,7 +4,7 @@
 
       <div class="main">
           <h1  class="title" @click="counterTitle">{{ title }} 
-            <span>
+            <span id="counter-box">
                 <counter-comp></counter-comp>
             </span>
         </h1>
@@ -93,15 +93,15 @@ components: {
   font-style: normal;
   margin-bottom: 30px;
   margin-top: 30px;
-  span{
+
+}
+#counter-box{
       font-weight: 300;
       font-size: 14px;
       position: absolute;
       right: -30%;
       top: 50%;
-  }
 }
-
 .button{
   font-size: 14px;
   margin-top: 8px;
@@ -114,10 +114,28 @@ components: {
   }
 }
 
+@media(max-width:768px){
+    .title{
+        position: relative;
+        margin-bottom: 40px;
+    }
+
+    #counter-box{
+        right: 50%;
+        top: 120%;
+    }
+    
+}
 @media(max-width: 425px){
     .title{
         position: relative;
         margin-bottom: 50px;
+    }
+    #counter-box{
+        right: 45%;
+        top: 120%;
+        width: 130px;
+        height: 20px;
     }
 }
 </style>

@@ -48,7 +48,11 @@ export default {
 .checkbox{
     position: absolute;
     z-index: -100;
+    left: 0;
     opacity: 0;
+    &-label{
+        cursor: pointer;
+    }
 }
 
 .checked{

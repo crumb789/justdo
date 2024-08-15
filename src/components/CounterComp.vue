@@ -45,6 +45,7 @@ export default {
             animation: fadeUpLeft 1 0.5s ease-in;
             display: flex;
             column-gap: 5px;
+            align-items: center;
         }
     }
 }
@@ -52,7 +53,7 @@ export default {
     position: relative;
     &-cup{
         &::before{
-            color: #6f4e37;
+            color: #818181;
         }
     }
 }
