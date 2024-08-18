@@ -2,6 +2,7 @@
     <div class="counter" v-if="howDone">
         <div class="counter-go"  v-if="howDone !== howItemsLegth">
             done {{howDone}} out of {{ howItemsLegth }} 
+            <span class="line" :style="{width: widthDivider + '%'}" :class="{dividerDone: widthDivider == 100}"></span>
         </div>
         <div class="counter-all_done" v-if="howDone == howItemsLegth">
                 completed 
@@ -30,7 +31,18 @@ export default {
         },
         howDone(){
             return this.$store.getters.doneTodosCount
-        }
+        },
+        widthDivider() {
+            let max = []
+            let current = []
+            this.$store.state.ListItems.forEach((item) => {
+                (item.check) ? current.push(1) : max = this.$store.state.ListItems.length
+            })
+            let result = current.reduce((item, sum) => sum + item, 0)
+            let procent = 100 / (max / result)
+            return (result === this.$store.state.ListItems.length) ? 100 : procent
+        },
+
     }
 }
 </script>
@@ -39,6 +51,12 @@ export default {
 .counter{
     &-go{
         animation: fadeUpLeft 1 0.5s ease-in;
+        span{
+            width: 100%;
+            height: 2px;
+            display: block;
+            background-color: #218f12;
+        }
     }
     &-all{
         &_done{

@@ -99,7 +99,7 @@ components: {
       font-weight: 300;
       font-size: 14px;
       position: absolute;
-      right: -30%;
+      right: -34%;
       top: 50%;
 }
 .button{

@@ -58,7 +58,9 @@ export default {
 
 <style lang="scss" scoped>
 .welcome{
-    position: absolute;
+    overflow-y: hidden;
+    top: 0;
+    position: fixed;
     width: 100vw;
     height: 100vh;
     font-size: 50px;
@@ -129,4 +131,11 @@ export default {
     }
 }
 
+@media(max-width: 425px){
+    .welcome{
+        &-text{
+            width: 90%;
+        }
+    }
+}
 </style>
