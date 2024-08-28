@@ -52,10 +52,11 @@ export default {
     &-go{
         animation: fadeUpLeft 1 0.5s ease-in;
         span{
-            width: 100%;
+            // width: 100%;
             height: 2px;
             display: block;
             background-color: #218f12;
+            transition: 0.3s all;
         }
     }
     &-all{

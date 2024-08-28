@@ -3,9 +3,12 @@
         <div class="form">
 
             <form v-if="btnMore" @submit.prevent="OnSubmit" >
-                <input id="input-form"  required
-                class="input is-info is-small" type="text" v-model="item" maxlength="80" 
-                placeholder="type here...">
+                <div class="form-box">
+                    <input id="input-form"  required
+                    class="input is-info is-small" type="text" v-model="item" maxlength="80" 
+                    placeholder="type here...">
+                    <button id="button" class="button is-success is-dark">Push</button>
+                </div>
                 <div @click="changeBtnMore" class="button is-ghost animate__animated animate__fadeInUp" title="more data ">
                     <!-- more data -->
                     <i class="bi bi-arrow-bar-down"></i>
@@ -14,10 +17,13 @@
 
             <!-- /////////////// -->
             <form v-if="!btnMore" @submit.prevent="OnSubmit" >
-                <input id="input-form " 
-                class="input is-info is-small " type="text" v-model="item" maxlength="80" 
-                placeholder="type here...">
-
+                <div class="form-box">
+                    <input id="input-form " 
+                    class="input is-info is-small " type="text" v-model="item" maxlength="80" 
+                    placeholder="type here...">
+                    <button id="button" class="button is-success is-dark">Push</button>
+                    
+                </div>
                 <label class="label animate__animated animate__lightSpeedInLeft" for="input-date">When should I do it?</label>
                 <input id="input-date" required
                     v-model="mustDone"
@@ -114,6 +120,7 @@ export default {
     display: flex;
     flex-direction: column;
     margin: 0 auto;   
+    gap: 3px;
     form{
         display: flex;
         flex-direction: column;
@@ -143,6 +150,10 @@ export default {
 }
 .button.is-ghost.is-focused:not(:active), .button:focus:not(:active){
     box-shadow: none;
+}
+#button{
+    height: 30px;
+    margin-left: 3px;
 }
 .data{
     position: absolute;

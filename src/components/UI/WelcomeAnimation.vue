@@ -1,12 +1,12 @@
 <template>
     <div class="welcome" :class="{closeModal: openModalSpace}">
-        <div class="welcome-text animate__animated animate__backInDown" :class="{closeModalText: openModalSpace}">
+        <div class="welcome-text animate__animated animate__fadeIn" :class="{closeModalText: openModalSpace}">
             {{ welcome }}
             <div class="circle-box">
                 <div class="circle-item" v-for="i in circles" :key="i"></div>
             </div>
         </div>
-        <div class=" welcome-btn animate__animated animate__backInUp" :class="{closeModalBtn: openModalSpace}">
+        <div class=" welcome-btn animate__animated animate__fadeIn" :class="{closeModalBtn: openModalSpace}">
             <i @click="closeModalSpace" class="bi bi-forward"></i>
         </div>
     </div>
