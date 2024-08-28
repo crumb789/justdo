@@ -4,8 +4,11 @@
 
             <form v-if="btnMore" @submit.prevent="OnSubmit" >
                 <div class="form-box">
+
+                   <!--deleted maxlength="80"  -->
+
                     <input id="input-form"  required
-                    class="input is-info is-small" type="text" v-model="item" maxlength="80" 
+                    class="input is-info is-small" type="text" v-model="item" 
                     placeholder="type here...">
                     <button id="button" class="button is-success is-dark">Push</button>
                 </div>
@@ -18,8 +21,11 @@
             <!-- /////////////// -->
             <form v-if="!btnMore" @submit.prevent="OnSubmit" >
                 <div class="form-box">
+
+                    <!--deleted maxlength="80"  -->
+                    
                     <input id="input-form " 
-                    class="input is-info is-small " type="text" v-model="item" maxlength="80" 
+                    class="input is-info is-small " type="text" v-model="item"  
                     placeholder="type here...">
                     <button id="button" class="button is-success is-dark">Push</button>
                     

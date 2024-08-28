@@ -85,6 +85,7 @@ export default {
         }
     }
     &-text{
+        position: relative;
         box-shadow: 2px 2px 1px #000;
         border: 1px solid #000;
         padding: 50px 50px 220px 50px;
