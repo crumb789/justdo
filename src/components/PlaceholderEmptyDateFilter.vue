@@ -1,6 +1,6 @@
 <template>
-    <div v-if="!GetAllItemsLength" class="placeholder animate__animated animate__shakeX">
-        It's time to add a new task <i class="bi bi-bandaid"></i>
+    <div v-if="!GetItemsFilterLength" class="placeholder animate__animated animate__shakeX">
+        There is nothing on this date <i class="bi bi-journal"></i>
     </div>
 </template>
 

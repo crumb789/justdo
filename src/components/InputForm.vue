@@ -163,8 +163,8 @@ export default {
 }
 .data{
     position: absolute;
-    top: 16px;
-    right: -23%;
+    top: 20%;
+    right: -26%;
     transform: translateY(-50%);
     &-box{
         animation: fadeUp 1 0.2s ease;
@@ -173,7 +173,7 @@ export default {
         // padding: 2px;
         // border-radius: 6px;
         // margin: 3px;
-        font-family: "Jersey 10 Charted", sans-serif;
+        font-family: "Dosis", sans-serif;
         font-weight: 400;
         font-style: normal;
         font-size: 18px;
@@ -204,4 +204,11 @@ export default {
         opacity: 1;
     }
 }
+@media(max-width:425px)
+    {
+        .data{
+            top: -34px !important;
+            right: 5% !important;
+        }
+    }
 </style>

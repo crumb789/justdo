@@ -20,8 +20,11 @@
         <important-list-items v-if="GetAllItemsFilter"></important-list-items>
 
 
-<!-- placeholder -->
+<!-- placeholders -->
         <placeholder-items-empty ></placeholder-items-empty>
+
+        <placeholder-empty-date-filter v-if="ifDataFilter > 0 && getFilterLength < 1"></placeholder-empty-date-filter>
+
     </div>
 </template>
 
@@ -34,6 +37,7 @@ import MainListItems from './MainListItems.vue'
 import ListSortedForId from './ListSortedForId.vue'
 import ImportantListItems from './ImportantListItems.vue'
 import DateFilterSecond from './DateFilterSecond.vue'
+import PlaceholderEmptyDateFilter from './PlaceholderEmptyDateFilter.vue'
 
 export default {
     components: {
@@ -45,6 +49,7 @@ export default {
         ListSortedForId,
         ImportantListItems,
         DateFilterSecond,
+        PlaceholderEmptyDateFilter,
     },
     data() {
         return{
@@ -73,7 +78,10 @@ export default {
             return this.$store.state.importantFilter
         },
         ifDataFilter(){
-            return this.$store.state.DataToSorted
+            return this.$store.state.DataToSorted.length
+        },
+        getFilterLength(){
+            return this.$store.state.Filter.length
         },
         checkToday(){
             return Date.parse(this.$store.getters.today)

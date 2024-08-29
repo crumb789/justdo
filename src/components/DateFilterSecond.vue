@@ -86,9 +86,6 @@ export default {
 
 .data{
     position: absolute;
-    top: 16px;
-    right: -23%;
-    transform: translateY(-50%);
     &-show{
         cursor: pointer;
         right: 0%;
