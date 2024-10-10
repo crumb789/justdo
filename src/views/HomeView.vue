@@ -1,5 +1,6 @@
 <template>
     <welcome-animation v-if="checkModal"></welcome-animation>
+    <!-- <tutur-vue></tutur-vue> -->
   <div class="container">
 
       <div class="main">
@@ -15,8 +16,10 @@
       <input-form ></input-form>
 <!-- search button activate -->
 
+
+      <list-items></list-items>    
       
-      <list-items></list-items>       
+      
       
   </div>
   <footer-comp></footer-comp>
@@ -29,8 +32,7 @@ import ListItems from '@/components/ListItems.vue'
 import CounterComp from '@/components/CounterComp.vue'
 import WelcomeAnimation from '@/components/UI/WelcomeAnimation.vue'
 import FooterComp from '@/components/FooterComp.vue'
-
-
+// import TuturVue from '@/components/UI/TuturVue.vue'
 
 
 export default {
@@ -39,7 +41,8 @@ components: {
       ListItems,
       CounterComp,
       WelcomeAnimation,
-      FooterComp
+      FooterComp,
+    //   TuturVue
   },
   data() {
       return{

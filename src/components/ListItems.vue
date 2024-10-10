@@ -1,12 +1,12 @@
 <template>
     <div class="list">
-        <check-important></check-important>
+        <check-important v-if="!actualDateForItems && ifSorted"></check-important>
 
         <!-- ИНПУТ ДАТЫ -->
         <!-- <date-filter v-if="GetAllItemsFilter.length < 1"></date-filter>                 -->
-        <date-filter-second></date-filter-second>
+        <date-filter-second v-if="!importantFilterTrue"></date-filter-second>
         
-        <select-filter v-if="GetAllItems.length > 1 && !importantFilterTrue">
+        <select-filter v-if="GetAllItems.length > 1 && !importantFilterTrue ">
         </select-filter>
 
 <!-- <main-list-items v-if="GetAllItemsFilter.length < 1 && !ifSorted && ifDataFilter < 2"></main-list-items> -->
@@ -88,6 +88,9 @@ export default {
         },
         checkFilterItemsToDate(){
             return this.$store.getters.filterToDate.length
+        },
+        actualDateForItems(){
+            return this.$store.state.DataToSorted
         }
     },
     methods:{
