@@ -26,7 +26,11 @@ export default {
     computed:{
         howManyItems(){
             return this.$store.state.ListItems.length
+        },
+        GetAllItemsFilter(){
+            return this.$store.state.ListItemsFilter
         }
+
     }
 }
 </script>

@@ -1,12 +1,30 @@
 <template>
     <div class="welcome" :class="{closeModal: openModalSpace}">
-        <div class="welcome-text animate__animated animate__fadeIn" :class="{closeModalText: openModalSpace}">
-            {{ welcome }}
+        <div class="welcome-text   " :class="{closeModalText: openModalSpace}">
+            <!-- {{ welcome }} -->
+            <div class="welcomeOne">
+                {{ welcome_1 }}
+            </div>
+            <div class="welcomeTwo">
+                {{ welcome_2 }}
+            </div>
+            <div class="welcomeThree">
+                {{ welcome_3 }}
+            </div>
+            <div class="welcomeFour">
+                {{ welcome_4 }}
+            </div>
+            <div class="welcomeFive">
+                {{ welcome_5 }}
+            </div>
+            <div class="welcomeSix">
+                {{ welcome_6 }}
+            </div>
             <div class="circle-box">
                 <div class="circle-item" v-for="i in circles" :key="i"></div>
             </div>
         </div>
-        <div class=" welcome-btn animate__animated animate__fadeIn" :class="{closeModalBtn: openModalSpace}">
+        <div class=" welcome-btn" :class="{closeModalBtn: openModalSpace}">
             <i @click="closeModalSpace" class="bi bi-forward"></i>
         </div>
     </div>
@@ -18,7 +36,13 @@
 export default {
     data() {
         return{
-            welcome: 'For the cause',
+            // welcome: 'For the cause',
+            welcome_1: 'Just ',
+            welcome_2: ' Do',
+            welcome_3: '.',
+            welcome_4: '.',
+            welcome_5: '.',
+            welcome_6: 'ToDo',
             text: [],
             openModalSpace: false,
             circles: 10
@@ -63,7 +87,7 @@ export default {
     position: fixed;
     width: 100vw;
     height: 100vh;
-    font-size: 50px;
+    font-size: 45px;
     background-color: #f0f8ff !important;
     font-family: "Reem Kufi Ink", sans-serif;
     font-weight: 400;
@@ -78,6 +102,12 @@ export default {
         top: 60%;
         cursor: pointer;
         color: #000;
+        display: inline-block;
+        // margin: 0 0.5rem;
+        animation: fadeIn; /* referring directly to the animation's @keyframe declaration */
+        animation-duration: 1.5s; /* don't forget to set a duration! */
+        animation-delay: 2.4s;
+        animation-fill-mode:backwards;
         :hover{
             transition: 0.2s all;
             // font-size: 55px;
@@ -86,26 +116,75 @@ export default {
     }
     &-text{
         position: relative;
-        box-shadow: 2px 2px 1px #000;
-        border: 1px solid #000;
+        // box-shadow: 2px 2px 1px #000;
+        // border: 1px solid #000;
         padding: 50px 50px 220px 50px;
-        border-radius: 15px;
+        // border-radius: 15px;
         text-decoration: underline;
     }
 }
 
+.welcomeOne{
+    display: inline-block;
+    // margin: 0 0.5rem;
+    animation: backInLeft; /* referring directly to the animation's @keyframe declaration */
+    animation-duration: 1.5s; /* don't forget to set a duration! */
+    animation-delay: 0.1s;
+    animation-fill-mode:backwards;
+}
+.welcomeTwo{
+    display: inline-block;
+    margin-left: 5px;
+    animation: backInRight; /* referring directly to the animation's @keyframe declaration */
+    animation-duration: 1.5s; /* don't forget to set a duration! */
+    animation-delay: 0.1s;
+    animation-fill-mode:backwards;
+}
+
+.welcomeThree{
+    display: inline-block;
+    margin: 0 0.1rem;
+    animation: bounceInDown; /* referring directly to the animation's @keyframe declaration */
+    animation-duration: 1.5s; /* don't forget to set a duration! */
+    animation-delay: 0.35s;
+    animation-fill-mode:backwards;
+}
+.welcomeFour{
+    display: inline-block;
+    margin: 0 0.1rem;
+    animation: bounceInDown; /* referring directly to the animation's @keyframe declaration */
+    animation-duration: 1.5s; /* don't forget to set a duration! */
+    animation-delay: 0.45s;
+    animation-fill-mode:backwards;
+}
+.welcomeFive{
+    display: inline-block;
+    margin: 0 0.1rem;
+    animation: bounceInDown; /* referring directly to the animation's @keyframe declaration */
+    animation-duration: 1.5s; /* don't forget to set a duration! */
+    animation-delay: 0.55s;
+    animation-fill-mode:backwards;
+}
+.welcomeSix{
+    color: hsl(142, 52%, 96%);
+    background: hsl(171, 100%, 29%);
+    border-radius: 7px;
+    text-decoration: underline;
+    display: inline-block;
+    margin: 0 0.1rem;
+    animation: bounceInRight; /* referring directly to the animation's @keyframe declaration */
+    animation-duration: 1.5s; /* don't forget to set a duration! */
+    animation-delay: 1.4s;
+    animation-fill-mode:backwards;
+}
 
 .closeModal{
     animation: opacityFade 1s 1 ease;
     display: none;
 }
-.closeModalText{
 
-}
-.closeModalBtn{
-    
-}
 .circle{
+
     &-box{
         left: 10px;
         position: absolute;
@@ -118,7 +197,8 @@ export default {
     &-item{
         width: 15px;
         height: 15px;
-        border: 1px solid #00000063;
+        /* krujki */
+        // border: 1px solid #00000063;
         border-radius: 100%;
     }
 }

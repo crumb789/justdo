@@ -6,7 +6,7 @@
         <!-- <date-filter v-if="GetAllItemsFilter.length < 1"></date-filter>                 -->
         <date-filter-second v-if="!importantFilterTrue"></date-filter-second>
         
-        <select-filter v-if="GetAllItems.length > 1 && !importantFilterTrue ">
+        <select-filter v-if="GetAllItems.length > 1 && !importantFilterTrue && !ifDataFilter">
         </select-filter>
 
 <!-- <main-list-items v-if="GetAllItemsFilter.length < 1 && !ifSorted && ifDataFilter < 2"></main-list-items> -->
@@ -90,7 +90,7 @@ export default {
             return this.$store.getters.filterToDate.length
         },
         actualDateForItems(){
-            return this.$store.state.DataToSorted
+            return this.$store.state.DataToSorted.length
         }
     },
     methods:{

@@ -46,7 +46,7 @@ components: {
   },
   data() {
       return{
-          title: 'Just Do..ToDo',
+          title: 'Just Do...ToDo',
           activeBtn: true,
       }
   },
