@@ -24,8 +24,15 @@
                 <div class="circle-item" v-for="i in circles" :key="i"></div>
             </div>
         </div>
-        <div class=" welcome-btn" :class="{closeModalBtn: openModalSpace}">
-            <i @click="closeModalSpace" class="bi bi-forward"></i>
+        <div class=" welcome-btn" @click="closeModalSpace" @mouseenter="changeIcon" @mouseleave="changeIcon"
+            :class="{closeModalBtn: openModalSpace}">
+                <i v-if="iconNow == 0" class="bi bi-forward"></i>
+                <i v-if="iconNow == 1" class="bi bi-bookshelf"></i>
+                <i v-if="iconNow == 2" class="bi bi-boombox"></i>
+                <i v-if="iconNow == 3" class="bi bi-box-seam"></i>
+                <i v-if="iconNow == 4" class="bi bi-brightness-alt-high-fill"></i>
+                <i v-if="iconNow == 5" class="bi bi-bug"></i>
+                <i v-if="iconNow == 6" class="bi bi-calendar2-day"></i>
         </div>
     </div>
 </template>
@@ -45,7 +52,9 @@ export default {
             welcome_6: 'ToDo',
             text: [],
             openModalSpace: false,
-            circles: 10
+            circles: 10,
+            iconsTake:[0,1,2,3,4,5,6,7,8,9],
+            iconNow: 0,
         }
     },
     methods:{
@@ -53,19 +62,16 @@ export default {
             this.openModalSpace = !this.openModalSpace
             this.$store.commit('modalClose')
         },
-        textGo(){
-            // // this.text.push(this.welcome)
-            // this.welcome = this.welcome.split('')
-            // this.welcome.forEach(element => {
-            //     this.text.push(element)
-            //     setTimeout(() => {
-            //         console.log("Delayed for 1 second.");
-            //     }, 2000);             
-            // });
-
-            // this.text = this.text.join('')
-            // console.log(this.text) 
-            console.log('fix welcome')
+        // textGo(){
+        //     console.log('fix welcome')
+        // },
+        changeIcon(){
+            console.log('change')
+            this.randomNumber()
+        },
+        randomNumber(){
+            let randomNumber = Math.floor(Math.random() * 6) + 1;
+            this.iconNow = randomNumber
         }
     },
     computed: {
@@ -73,9 +79,9 @@ export default {
             return this.$store.state.modalWindow
         }
     },
-    mounted() {
-        this.textGo()
-    }
+    // mounted() {
+    //     this.textGo()
+    // }
 
 }
 </script>
@@ -146,7 +152,7 @@ export default {
     margin: 0 0.1rem;
     animation: bounceInDown; /* referring directly to the animation's @keyframe declaration */
     animation-duration: 1.5s; /* don't forget to set a duration! */
-    animation-delay: 0.35s;
+    animation-delay: 0.55s;
     animation-fill-mode:backwards;
 }
 .welcomeFour{
@@ -154,7 +160,7 @@ export default {
     margin: 0 0.1rem;
     animation: bounceInDown; /* referring directly to the animation's @keyframe declaration */
     animation-duration: 1.5s; /* don't forget to set a duration! */
-    animation-delay: 0.45s;
+    animation-delay: 0.35s;
     animation-fill-mode:backwards;
 }
 .welcomeFive{
@@ -162,7 +168,7 @@ export default {
     margin: 0 0.1rem;
     animation: bounceInDown; /* referring directly to the animation's @keyframe declaration */
     animation-duration: 1.5s; /* don't forget to set a duration! */
-    animation-delay: 0.55s;
+    animation-delay: 0.45s;
     animation-fill-mode:backwards;
 }
 .welcomeSix{

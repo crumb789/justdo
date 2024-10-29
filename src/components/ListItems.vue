@@ -4,7 +4,7 @@
 
         <!-- ИНПУТ ДАТЫ -->
         <!-- <date-filter v-if="GetAllItemsFilter.length < 1"></date-filter>                 -->
-        <date-filter-second v-if="!importantFilterTrue"></date-filter-second>
+        <date-filter-second v-if="!importantFilterTrue && GetAllItems.length > 1"></date-filter-second>
         
         <select-filter v-if="GetAllItems.length > 1 && !importantFilterTrue && !ifDataFilter">
         </select-filter>
