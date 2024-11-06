@@ -24,7 +24,7 @@
                 <div class="circle-item" v-for="i in circles" :key="i"></div>
             </div>
         </div>
-        <div class=" welcome-btn" @click="closeModalSpace" @mouseenter="changeIcon" @mouseleave="changeIcon"
+        <div class=" welcome-btn" @click="closeModalSpace"  
             :class="{closeModalBtn: openModalSpace}">
                 <i v-if="iconNow == 0" class="bi bi-forward"></i>
                 <i v-if="iconNow == 1" class="bi bi-bookshelf"></i>
@@ -66,7 +66,6 @@ export default {
         //     console.log('fix welcome')
         // },
         changeIcon(){
-            console.log('change')
             this.randomNumber()
         },
         randomNumber(){
@@ -79,9 +78,10 @@ export default {
             return this.$store.state.modalWindow
         }
     },
-    // mounted() {
-    //     this.textGo()
-    // }
+    mounted() {
+        // this.textGo()
+        this.changeIcon()
+    }
 
 }
 </script>

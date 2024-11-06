@@ -125,6 +125,17 @@ export default createStore({
 
       
     },
+    
+    ///////////////////Editig Text items
+    editItem(state, item){
+      console.log( 'this in vuex:');
+      state.ListItems.forEach((i, index) => {
+        if(i.id === item.id){
+          state.ListItems[index].text = item.text;
+          console.log(state.ListItems[index]);
+        }
+      });      
+    },
 
     /* check change */
     CheckItem(state, item ){
@@ -205,7 +216,6 @@ export default createStore({
       console.log(state.DataToSorted)
     },
 
-
     sortedItemsToDate(state, date){
       (date !== 0 && date) ? state.DataToSorted[0] = date : false ;
     },
@@ -221,6 +231,9 @@ export default createStore({
     modalClose(state){
       state.modalWindow = false
     },
+
+
+
 
 
     ////proverka Localhost

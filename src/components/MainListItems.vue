@@ -1,11 +1,10 @@
 <template>    
     <div class="list-item" v-for="item in GetAllItems" :key="item.id">
         <div class="item box" 
-            :class="{green: item.check, orange: item.important, 
-            mix: item.check && item.important, 
+        :class="{green: item.check, orange: item.important, mix: item.check && item.important, 
             alert: checkToday > Date.parse(item.mustDoneparse) && !item.check }" 
-            @mouseenter="deleteButton = item.id" 
-            @mouseleave="deleteButton = false">
+            @mouseenter="deleteButton = item.id, editBtn = item.id" @mouseleave="deleteButton = false , 
+            rotateBtn = false , editBtn = false, editingItem = false">
             
             <div class="buttonsbox" :class="{activeBtns: deleteButton === item.id && item.id != 0}">
                 <!-- <div class="buttonsbox" :class="{activeBtns:true}"> -->
@@ -30,7 +29,23 @@
                 </button>
             </div>
 
-                <p>{{ item.text }}</p>
+            <p>
+                    <span>
+                        {{ item.text }} 
+                    </span>
+                    <!-- open editig -->
+                    <i v-if="editBtn === item.id && item.check == false && !editingItem" @click="editThisItem"
+                        class="bi bi-pencil edit edit-pen">
+                    </i>
+                    <!-- close editig -->
+                    <i v-if="editBtn === item.id && item.check == false && editingItem" @click="editThisItem"
+                        class="bi bi-pencil edit edit-pen edit-pen_active">
+                    </i>
+                </p>
+                <form v-if="editBtn === item.id && editingItem" @submit.prevent="changeTextInItem(item)">
+                    <input :value="item.text" class="edit edit-input input is-info"
+                        @input="event => newText = event.target.value" >
+                </form>
 
             <!-- delete btns    -->
             <button  v-if="deleteButton === item.id" title="Delete it?"
@@ -60,6 +75,9 @@ export default {
         return{
             deleteButton: false,
             rotateBtn: false,
+            editBtn: false,
+            editingItem: false,
+            newText: ''
         }
     },
     methods:{
@@ -81,6 +99,31 @@ export default {
         },
         rotateBtnActivated(){
             this.rotateBtn = !this.rotateBtn
+        },
+        editThisItem(){
+            this.editingItem = !this.editingItem
+            // console.log('edit btn:', this.editingItem)
+        },
+        changeTextInItem(item){
+            console.log('This code must be change items')
+            // console.log(this.newText, item);
+            let now = `${new Date().getDate()}.${new Date().getMonth() + 1}.${ new Date().getFullYear() }`
+
+            let editNote = {   
+                    id: item.id,
+                    text: this.newText,
+                    check: false ,
+                    dateCreate: now,
+                    important: item.important,
+                    mustDone: item.mustDone,
+                    mustDoneparse:  item.mustDoneparse
+                }
+                // console.log(editNote)
+
+            this.$store.commit('editItem', editNote)
+
+            this.editBtn = false
+            this.editingItem= false
         }
     },
     computed:{
