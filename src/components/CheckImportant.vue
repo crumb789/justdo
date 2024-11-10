@@ -1,6 +1,6 @@
 <template>
     <div class="checked check-important" v-if="showButtonImportant > 0">
-        <div class="checked-circle">
+        <div class="checked-circle" :class="{chekedUse: checkbox}">
             <span class="checked-circle_line" :class="{checkbox: checkbox == false }" ></span>
         </div>
         <label class="checkbox-label" for="important-tag" >
@@ -64,8 +64,8 @@ export default {
         &::before{
             content: '';
             position: absolute;
-            width: 15px;
-            height: 15px;
+            width: 14px;
+            height: 14px;
             border: 2px solid #c87669;
             top: 50%;
             transform: translateY(-50%);
@@ -103,6 +103,17 @@ export default {
         }
     }
 }
+
+.chekedUse{
+    &::before{
+            content: '';
+            border: 7px solid rgb(92 230 175);
+            transition: 0.5s all;
+            width: 5px;
+            height: 5px;
+        }
+}
+
 
 @media(max-width: 1024px){
     .check{

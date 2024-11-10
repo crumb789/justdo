@@ -288,6 +288,10 @@ export default {
     font-weight: 500;   
 }
 
+.hiddin{
+    opacity: 0;
+}
+
 @media(max-width:1024px){
     .item{
         width: 70%;
@@ -309,7 +313,15 @@ export default {
 }
 @media(max-width:425px){
     .item{
-        width: 95%;
+        width: 92%;
+        &:hover{
+            width: 96%;
+            margin-top: 30px;
+            box-shadow: 4px 4px 3px #9b9a9a;
+        }
+        &-data{
+            top: -16px;
+        }
     }
     .activeBtns{
         border-radius: 6px 2px 2px 6px;
@@ -318,8 +330,9 @@ export default {
         z-index: 100;
     }
     .buttonsbox{
-        top: -22px;
+        top: -30px;
         height: 36px;
+        left: 8px;
         border: none;
         border-radius: 4px;
         box-shadow: none;

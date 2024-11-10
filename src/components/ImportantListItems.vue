@@ -6,7 +6,8 @@
             @mouseenter="deleteButton = item.id, editBtn = item.id" @mouseleave="deleteButton = false , 
             rotateBtn = false , editBtn = false, editingItem = false">
             
-                <div class="buttonsbox" :class="{activeBtns: deleteButton === item.id}">
+            <div class="buttonsbox" v-if="!editingItem"
+                    :class="{activeBtns: deleteButton === item.id && item.id != 0}">
                     <!-- done check -->
                     <button v-if="!item.check && item.check !== null" title="This is done"
                         class="check button is-ghost" @click="CheckThisitem(item)">
@@ -29,21 +30,22 @@
                 </div>
 
                 <p>
-                    <span>
+                    <span :class="{hiddin: editingItem && editBtn === item.id}">
                         {{ item.text }} 
                     </span>
                     <!-- open editig -->
                     <i v-if="editBtn === item.id && item.check == false && !editingItem" @click="editThisItem"
                         class="bi bi-pencil edit edit-pen">
                     </i>
-                    <!-- close editig -->
-                    <i v-if="editBtn === item.id && item.check == false && editingItem" @click="editThisItem"
-                        class="bi bi-pencil edit edit-pen edit-pen_active">
-                    </i>
                 </p>
                 <form v-if="editBtn === item.id && editingItem" @submit.prevent="changeTextInItem(item)">
                     <input :value="item.text" class="edit edit-input input is-info"
                         @input="event => newText = event.target.value" >
+                        <!-- close editig -->
+                    <i v-if="editBtn === item.id && item.check == false && editingItem" @click="editThisItem"
+                        class="bi bi-pencil edit edit-pen edit-pen_active"
+                        title="close editig">
+                    </i>
                 </form>
 
             <!-- delete btns    -->

@@ -6,7 +6,8 @@
             @mouseenter="deleteButton = item.id, editBtn = item.id" @mouseleave="deleteButton = false , 
             rotateBtn = false , editBtn = false, editingItem = false">
                 
-                <div class="buttonsbox" :class="{activeBtns: deleteButton === item.id && item.id != 0}">
+                <div class="buttonsbox" v-if="!editingItem"
+                    :class="{activeBtns: deleteButton === item.id && item.id != 0}">
                     <!-- done check -->
                     <button v-if="!item.check && item.check !== null" title="This is done"
                         class="check button is-ghost" @click="CheckThisitem(item)">
@@ -29,21 +30,22 @@
                 </div>
 
                 <p>
-                    <span>
+                    <span :class="{hiddin: editingItem && editBtn === item.id}">
                         {{ item.text }} 
                     </span>
                     <!-- open editig -->
                     <i v-if="editBtn === item.id && item.check == false && !editingItem" @click="editThisItem"
                         class="bi bi-pencil edit edit-pen">
                     </i>
-                    <!-- close editig -->
-                    <i v-if="editBtn === item.id && item.check == false && editingItem" @click="editThisItem"
-                        class="bi bi-pencil edit edit-pen edit-pen_active">
-                    </i>
                 </p>
                 <form v-if="editBtn === item.id && editingItem" @submit.prevent="changeTextInItem(item)">
                     <input :value="item.text" class="edit edit-input input is-info"
                         @input="event => newText = event.target.value" >
+                        <!-- close editig -->
+                    <i v-if="editBtn === item.id && item.check == false && editingItem" @click="editThisItem"
+                        class="bi bi-pencil edit edit-pen edit-pen_active"
+                        title="close editig">
+                    </i>
                 </form>
 
             <!-- delete btns    -->
@@ -148,7 +150,9 @@ export default {
         transform: translateY(-50%);
         cursor: pointer;
         &_active{
-            color: #ff6685;
+            color: #dd2929;
+            animation: shake 1s infinite ease ; 
+            animation-delay: 0.5s;
         }
     }
     &-input{
@@ -162,4 +166,29 @@ export default {
     }
 }
 
+@keyframes shake{
+    0%{
+        rotate: 5deg;
+    }
+    25%{
+        rotate: 0deg;
+    }
+    50%{
+        rotate: -5deg;
+    }
+    75%{
+        rotate: 0deg;
+    }
+    100%{
+        rotate: 0deg;
+    }
+}
+
+@media(max-width: 425px){
+    .edit{
+        &-pen{
+            left: 6px;
+        }
+    }
+}
 </style>
