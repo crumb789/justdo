@@ -1,5 +1,5 @@
 <template>
-    <div class="counter" v-if="howDone">
+    <div class="counter animate__animated animate__slideInDown" v-if="howDone">
         <div class="counter-go"  v-if="howDone !== howItemsLegth">
             done {{howDone}} out of {{ howItemsLegth }} 
             <span class="line" :style="{width: widthDivider + '%'}" :class="{dividerDone: widthDivider == 100}"></span>
@@ -49,6 +49,7 @@ export default {
 
 <style lang="scss" scoped>
 .counter{
+    animation-duration: 0.3s;
     &-go{
         animation: fadeUpLeft 1 0.5s ease-in;
         span{
@@ -68,6 +69,7 @@ export default {
         }
     }
 }
+
 .bi{
     position: relative;
     &-cup{
@@ -109,9 +111,8 @@ export default {
 @keyframes fadeUpLeft {
     0% { 
         // font-size: 10px;
-        width: 120%;
         text-align: left;
-        opacity: 0.5;
+        opacity:  0;
     }
     100%{
         // font-size: 16px;

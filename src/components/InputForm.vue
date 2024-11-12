@@ -40,9 +40,14 @@
                 </div>
             </form>
             
-            <div class="data">
-                <span v-if="actualDateForItems[0]" class="data-number data-box data-box-line">
+            <!-- data, if choise -->
+            <div class="data" v-if="actualDateForItems[0]">
+                <span  class="data-number data-box data-box-line">
                     {{ actualDateForItems }}
+                </span>
+                <span @click="resetDataToSorted"
+                    class="data-close" title="reset this date">
+                        <i class="bi bi-door-closed"></i>
                 </span>
             </div>
         </div>
@@ -108,6 +113,9 @@ export default {
             if(this.btnMore == true) {
                 this.mustDone = ''
             }
+        },
+        resetDataToSorted(){
+            this.$store.commit('resetDataToSorted')
         }
     },
     computed:{
@@ -191,6 +199,12 @@ export default {
             }
 
         }
+    }
+    &-close{
+        position: absolute;
+        font-size: 18px;
+        margin-left: 5px;
+        cursor: pointer;
     }
 }
 

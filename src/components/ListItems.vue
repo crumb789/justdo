@@ -316,8 +316,9 @@ export default {
         width: 92%;
         &:hover{
             width: 96%;
-            margin-top: 30px;
+            margin: 30px 0 30px 0;
             box-shadow: 4px 4px 3px #9b9a9a;
+            height: 50px;
         }
         &-data{
             top: -16px;
