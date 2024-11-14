@@ -200,6 +200,9 @@ export default {
     .edit{
         &-pen{
             left: 6px;
+            &_done{
+                left: 92%;
+            }
         }
     }
 }
