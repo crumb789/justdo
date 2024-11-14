@@ -314,11 +314,12 @@ export default {
 @media(max-width:425px){
     .item{
         width: 92%;
+        transition: 0.3s all;
         &:hover{
             width: 96%;
             margin: 30px 0 30px 0;
             box-shadow: 4px 4px 3px #9b9a9a;
-            height: 50px;
+            // height: 100%;
         }
         &-data{
             top: -16px;
