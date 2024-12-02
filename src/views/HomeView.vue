@@ -83,6 +83,11 @@ components: {
   font-weight: 400;
   font-style: normal;
 }
+
+#html{
+    background-color: rebeccapurple !important;
+}
+
 .main{
   display: block;
 }

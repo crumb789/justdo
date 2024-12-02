@@ -15,6 +15,11 @@ export default {
       
     }
   },
+  computed:{
+    whatTheme(){
+      return this.$store.state.theme
+    }
+  },
   mounted(){
     console.log( new Date().getMonth() + 1 )
   },
@@ -27,7 +32,7 @@ export default {
 
 
 <style lang="scss">
-html{
+#html{
   background-color: aliceblue;  /* back all screen */
 }
 #app {

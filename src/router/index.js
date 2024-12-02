@@ -20,4 +20,8 @@ const router = createRouter({
   routes
 })
 
+router.beforeEach(() => {
+  document.title = 'JustDO'
+})
+
 export default router
