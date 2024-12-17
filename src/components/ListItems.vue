@@ -171,6 +171,7 @@ export default {
     box-shadow: -3px -3px 9px #d1d1d1;
     opacity: 0;
     transition: 0.3s all;
+    background-color: #f0f8ff;
     button{
         height: 100%;
     }

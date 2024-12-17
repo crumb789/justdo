@@ -15,6 +15,26 @@ export default createStore({
         mustDone: null,
         mustDoneparse: null,
         showDataCreated: false
+      },
+      {
+        id: 1,
+        text: "А это пример просроченной задачи о_О",
+        check:  false,
+        dateCreate: '3.1.2023',
+        important: true,
+        mustDone: '09.12.2024',
+        mustDoneparse: '2024-12-09',
+        showDataCreated: false
+      },
+      {
+        id: 2,
+        text: "Это тут для примера выполненой задачи, удали или измени:) ",
+        check:  true,
+        dateCreate: '3.1.2023',
+        important: true,
+        mustDone: '09.12.2024',
+        mustDoneparse: '2024-12-09',
+        showDataCreated: false
       }
     ],
     ListItemsFilter:[

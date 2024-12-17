@@ -14,7 +14,7 @@
                 </div>
                 <div @click="changeBtnMore" class="button is-ghost animate__animated animate__fadeInUp" title="more data ">
                     <!-- more data -->
-                    <i class="bi bi-arrow-bar-down"></i>
+                    <i class="bi bi-chevron-double-down"></i>
                 </div>
             </form>
 
@@ -35,7 +35,7 @@
                     v-model="mustDone"
                     class="input input-date is-info is-small animate__animated animate__jackInTheBox " type="date">
                 <div @click="changeBtnMore" class="button is-ghost animate__animated animate__backInDown" title="close">
-                    <i class="bi bi-arrow-bar-up"></i>
+                    <i class="bi bi-chevron-bar-up"></i>
                     <!-- close -->
                 </div>
             </form>
