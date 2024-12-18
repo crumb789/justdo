@@ -264,7 +264,7 @@ export default {
 } 
 
 .orange{
-    background-color: #f69e545c;
+    background-color: #ecd4c1;
     // border-color: rgb(150, 2, 2);
     border-left: 1px solid #96020275;
     border-top: 1px solid #96020275;
@@ -273,7 +273,7 @@ export default {
     transform: 0.2s all;
 }
 .mix{
-    background-color: #54f6665c;
+    background-color: #b7f7c8;
     p{
         opacity: 0.8;
     }
@@ -317,9 +317,10 @@ export default {
         width: 92%;
         transition: 0.3s all;
         &:hover{
-            width: 96%;
+            // width: 96%;
             margin: 30px 0 30px 0;
-            box-shadow: 4px 4px 3px #9b9a9a;
+            // box-shadow: 4px 4px 3px #9b9a9a;
+            box-shadow: 4px 4px 2px #9b9a9a, -4px -1px 7px #9b9b9b;
             // height: 100%;
         }
         &-data{
