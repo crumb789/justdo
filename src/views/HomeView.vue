@@ -5,6 +5,10 @@
 
       <div class="main">
           <h1  class="title" @click="counterTitle">{{ title }} 
+            <span>
+                <i @click="settingOpen" class="bi bi-gear setting"></i>
+                <modal-setting v-if="checkSettingMenu"></modal-setting>
+            </span>
             <span id="counter-box">
                 <counter-comp></counter-comp>
             </span>
@@ -32,6 +36,8 @@ import ListItems from '@/components/ListItems.vue'
 import CounterComp from '@/components/CounterComp.vue'
 import WelcomeAnimation from '@/components/UI/WelcomeAnimation.vue'
 import FooterComp from '@/components/FooterComp.vue'
+import ModalSetting from '@/components/UI/ModalSetting.vue'
+
 // import TuturVue from '@/components/UI/TuturVue.vue'
 
 
@@ -42,12 +48,14 @@ components: {
       CounterComp,
       WelcomeAnimation,
       FooterComp,
+      ModalSetting,
     //   TuturVue
   },
   data() {
       return{
           title: 'Just Do...ToDo',
           activeBtn: true,
+          setting: false,
       }
   },
   methods:{
@@ -57,6 +65,9 @@ components: {
       closeFilter(){
           this.$store.commit('closeFilterItem',)
       },
+      settingOpen(){
+        this.$store.commit('settingMenuChange',)
+      }
   },
   computed:{
       titleComputed(){
@@ -68,6 +79,9 @@ components: {
       },
       checkModal(){
           return this.$store.state.modalWindow
+      },
+      checkSettingMenu(){
+          return this.$store.state.setting
       }
   },
   mounted(){
@@ -121,6 +135,11 @@ components: {
       box-shadow: none;
   }
 }
+.setting{
+    font-size: 14px;
+    cursor: pointer;
+}
+
 
 @media(max-width:768px){
     .title{

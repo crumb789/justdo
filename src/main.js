@@ -9,7 +9,11 @@ import 'animate.css';
 store.subscribe( (mutation, state) => {
     localStorage.setItem('ListTodo', JSON.stringify(state.ListItems));  
     // localStorage.setItem('sortedList', JSON.stringify(state.sortedList));  
-    localStorage.setItem('FilterDate', JSON.stringify(state.DataToSorted));  
+    localStorage.setItem('FilterDate', JSON.stringify(state.DataToSorted)); 
+    localStorage.setItem('ThemeNumber', JSON.stringify(state.themeBack)); 
+
+  
+
 
     sessionStorage.setItem('modalWindow', JSON.stringify(state.modalWindow));  
 })

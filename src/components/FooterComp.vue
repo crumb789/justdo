@@ -36,6 +36,7 @@ footer{
     font-size: 14px;
     font-weight: 600;
     border-top: 1px solid #3e8ed03b;
+    position: relative;
     // position: absolute;
     bottom: 0;
     // width: 100%;
