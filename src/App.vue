@@ -14,7 +14,6 @@ import BackApp from './components/UI/BackApp.vue'
 export default {
   data() {
     return{
-      bgColor: '#ffffff',
     }
   },
   components: {
