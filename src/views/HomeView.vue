@@ -6,7 +6,7 @@
       <div class="main">
           <h1  class="title" @click="counterTitle">{{ title }} 
             <span>
-                <i @click="settingOpen" class="bi bi-gear setting"></i>
+                <i @click="settingOpen" class="bi bi-gear-fill setting"></i>
                 <modal-setting v-if="checkSettingMenu"></modal-setting>
             </span>
             <span id="counter-box">

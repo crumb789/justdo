@@ -281,7 +281,7 @@ export default {
 
 .alert{
     color: #000;
-    background-color: #fd9500b8;   
+    background-color: #f7b047;   
     border-left: 1px solid #e56700;
     border-top: 1px solid #e56700;
     border-right: 3px solid #e56700;

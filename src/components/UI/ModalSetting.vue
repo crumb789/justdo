@@ -10,8 +10,10 @@
         <ul class="menu">
             <ul class="backgr">Backgrounds:
                 <li @click="choiseTheme(number)"
-                    v-for="number in themeHWO" :key="number.id" class="backgr_list">
-                    {{ number.count }}
+                    v-for="number in themeHWO" :key="number.id" 
+                    :class="{ListActive: number.count === numberTheme}"
+                    class="backgr_list backgr_list ">
+                    {{ number.text }}
                 </li>
             </ul>
 
@@ -29,14 +31,17 @@ export default {
                 {
                     id: 0,
                     count: 1,
+                    text:'Random Shapes'
                 },
                 {
                     id: 1,
                     count: 2,
+                    text:'Cork Screw'
                 },
                 {
                     id: 2,
                     count: 3,
+                    text:'Kiwi'
                 },
             ]
         }
@@ -47,6 +52,11 @@ export default {
         },
         choiseTheme(number){
             this.$store.commit('changeThmeme', number.count)
+        }
+    },
+    computed:{
+        numberTheme(){
+            return this.$store.state.themeBack
         }
     }
 }
@@ -103,12 +113,31 @@ ul{
         }
         
     }
-    &.backgr{
-        margin: 22px 0;
-        &:hover{
-            text-decoration: none !important;
-        }
-    }
 }
-
+.backgr{
+    margin: 22px 0;
+    &_list{
+        text-align: left;
+        transition: 0.2s all;
+        border-radius: 3px;
+        padding: 0px 3px;
+        -webkit-box-shadow: 0px 1px 1px 0px rgba(34, 60, 80, 0.2) ;
+        -moz-box-shadow: 0px 1px 1px 0px rgba(34, 60, 80, 0.2) ;
+        box-shadow: 0px 1px 1px 0px rgba(34, 60, 80, 0.2) ;
+        &:hover{
+            color: #f5bf6e;
+        }
+    }        
+        
+}
+.ListActive{
+    color: #933737;
+    // border: 0.5px #000 solid;
+    border-radius: 3px;
+    padding: 0px 3px 0px 5px;
+    // box-shadow: -2px -1px 2px grey inset, 1px 1px 1px #bdb7b7 inset;
+    -webkit-box-shadow: 0px 3px 2px 0px rgba(34, 60, 80, 0.2) inset;
+    -moz-box-shadow: 0px 3px 2px 0px rgba(34, 60, 80, 0.2) inset;
+    box-shadow: 0px 3px 2px 0px rgba(34, 60, 80, 0.2) inset;
+}
 </style>

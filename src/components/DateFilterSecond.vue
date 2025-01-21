@@ -3,7 +3,7 @@
 
         <!--  btn-calendar -->
         <span  v-if="showBtnDataChoise" @click="showBtnDataChoise = false" class="data-show data-box" title="filter by completion date">
-            <i class="bi bi-calendar4-week"></i>
+            <i class="bi bi-calendar3"></i>
         </span> 
 
 
@@ -108,7 +108,15 @@ export default {
 .navbar-link:not(.is-arrowless)::after, .select:not(.is-multiple):not(.is-loading)::after{
     content: none;
 }
-
+.bi{
+    &-calendar3{
+        &::before{
+            padding: 0px 0px;
+            background-color: #eef7ff;
+            border-radius: 3px;
+        }
+    }
+}
 @media (max-width: 1024px){
     .select{
         &-filter{

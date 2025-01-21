@@ -52,6 +52,9 @@ export default {
     animation-duration: 0.3s;
     &-go{
         animation: fadeUpLeft 1 0.5s ease-in;
+        padding: 2px 3px 0px 3px;
+        background-color: #eef7ff;
+        border-radius: 3px;
         span{
             // width: 100%;
             height: 2px;

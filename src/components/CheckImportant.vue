@@ -52,6 +52,10 @@ export default {
     opacity: 0;
     &-label{
         cursor: pointer;
+        padding: 2px 11px;
+        background-color: #eef7ff;
+        border-radius: 3px;
+        border: 1px solid #dbdbdb;
     }
 }
 
@@ -59,7 +63,7 @@ export default {
     position: absolute;
     width: 200px;
     left: 24%;
-    top: -35px;
+    top: -31px;
     &-circle{
         &::before{
             content: '';
@@ -135,7 +139,7 @@ export default {
     .check{
         &-important{
             left: 2.5%;
-            top: -40px;
+            top: -31px;
         }
     }
 }
