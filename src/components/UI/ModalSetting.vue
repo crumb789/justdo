@@ -4,7 +4,7 @@
   <div class="modal-content">
     <!-- Any other Bulma elements you want -->
   </div>
-  <button  @click="closeMenu" class="modal-close is-large" aria-label="close"></button>
+  <button  @click="closeMenu" class="modal-close is-large" id="close" aria-label="close"></button>
 </div>
     <div class="setting-box animate__animated animate__fadeInDown animate__faster">
         <ul class="menu">
@@ -12,7 +12,9 @@
                 <li @click="choiseTheme(number)"
                     v-for="number in themeHWO" :key="number.id" 
                     :class="{ListActive: number.count === numberTheme}"
-                    class="backgr_list backgr_list ">
+                    class="backgr_list backgr_list "
+                    :style="{ 'background-color': BackgroundColor, 
+                    'background-image': background}" >
                     {{ number.text }}
                 </li>
             </ul>
@@ -43,7 +45,8 @@ export default {
                     count: 3,
                     text:'Kiwi'
                 },
-            ]
+            ],
+            BackgroundColor: '#e6f3ff',
         }
     },
     methods:{
@@ -57,6 +60,9 @@ export default {
     computed:{
         numberTheme(){
             return this.$store.state.themeBack
+        },
+        background(){
+            return this.$store.getters.backgrounds
         }
     }
 }
@@ -65,7 +71,7 @@ export default {
 <style lang="scss">
 .setting{
     &-box{
-        position: relative;
+        position: absolute;
         top: 0;
         right: 0;
         font-size: 14px;
@@ -121,9 +127,10 @@ ul{
         transition: 0.2s all;
         border-radius: 3px;
         padding: 0px 3px;
-        -webkit-box-shadow: 0px 1px 1px 0px rgba(34, 60, 80, 0.2) ;
-        -moz-box-shadow: 0px 1px 1px 0px rgba(34, 60, 80, 0.2) ;
-        box-shadow: 0px 1px 1px 0px rgba(34, 60, 80, 0.2) ;
+        border: 1px solid;
+        // -webkit-box-shadow: 0px 1px 1px 0px rgba(34, 60, 80, 0.2) ;
+        // -moz-box-shadow: 0px 1px 1px 0px rgba(34, 60, 80, 0.2) ;
+        // box-shadow: 0px 1px 1px 0px rgba(34, 60, 80, 0.2) ;
         &:hover{
             color: #f5bf6e;
         }
@@ -134,10 +141,16 @@ ul{
     color: #933737;
     // border: 0.5px #000 solid;
     border-radius: 3px;
-    padding: 0px 3px 0px 5px;
+    padding: 8px 3px 8px 5px;
     // box-shadow: -2px -1px 2px grey inset, 1px 1px 1px #bdb7b7 inset;
     -webkit-box-shadow: 0px 3px 2px 0px rgba(34, 60, 80, 0.2) inset;
     -moz-box-shadow: 0px 3px 2px 0px rgba(34, 60, 80, 0.2) inset;
     box-shadow: 0px 3px 2px 0px rgba(34, 60, 80, 0.2) inset;
+}
+
+@media(max-width: 425px){
+    #close{
+        top: 0px;
+    }
 }
 </style>

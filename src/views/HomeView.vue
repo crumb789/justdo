@@ -121,8 +121,9 @@ components: {
       font-weight: 300;
       font-size: 14px;
       position: absolute;
-      right: -34%;
+      right: -100px;
       top: 50%;
+      transform: translate(0, -3px);
 }
 .button{
   font-size: 14px;
@@ -148,7 +149,7 @@ components: {
     }
 
     #counter-box{
-        right: 50%;
+        right: 60%;
         top: 120%;
     }
     
@@ -159,7 +160,7 @@ components: {
         margin-bottom: 50px;
     }
     #counter-box{
-        right: 45%;
+        right: 50%;
         top: 120%;
         width: 130px;
         height: 20px;
