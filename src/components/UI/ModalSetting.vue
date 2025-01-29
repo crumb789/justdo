@@ -13,12 +13,20 @@
                     v-for="number in themeHWO" :key="number.id" 
                     :class="{ListActive: number.count === numberTheme}"
                     class="backgr_list backgr_list "
-                    :style="{ 'background-color': BackgroundColor, 
+                    :style="{ 'background-color': BackgroundColorFromStore, 
                     'background-image': background}" >
-                    {{ number.text }}
+                        {{ number.text }}
+                </li>
+                <li>
+                    <form id="form" @submit.prevent="changeColorOne">
+                        <input id="colorOne" type="color" :value="BackgroundColorFromStore" @input="selectColors">
+
+                        <!-- <input type="color" :value="BackgroundColorSecondFromStore"> -->
+                        <button><i class="bi bi-brush"></i></button>
+                    </form>
                 </li>
             </ul>
-
+            
             <li class="menu_list-delete">Delete all notes</li>
             <!-- <li @click="closeMenu" class="menu_list-close">Close</li> -->
         </ul>
@@ -26,6 +34,7 @@
 </template>
 
 <script>
+
 export default {
     data() {
         return{
@@ -46,7 +55,8 @@ export default {
                     text:'Kiwi'
                 },
             ],
-            BackgroundColor: '#e6f3ff',
+            colorOne: '',
+            colorSecond: '',
         }
     },
     methods:{
@@ -55,7 +65,15 @@ export default {
         },
         choiseTheme(number){
             this.$store.commit('changeThmeme', number.count)
-        }
+        },
+        changeColorOne(){
+           console.log(this.colorOne) 
+           this.$store.commit('changeColorBackgr', this.colorOne)
+        },
+        selectColors(event){
+            this.colorOne = event.target.value;
+            console.log('hgfhf', this.colorOne)
+        },
     },
     computed:{
         numberTheme(){
@@ -63,7 +81,14 @@ export default {
         },
         background(){
             return this.$store.getters.backgrounds
-        }
+        },
+        BackgroundColorFromStore(){
+            let a = this.$store.state.BackgroundColor
+            return a
+        },
+        BackgroundColorSecondFromStore(){
+            return this.$store.state.BackgroundColorSecond
+        },
     }
 }
 </script>
@@ -95,19 +120,7 @@ ul{
             cursor: pointer;
         }
         &.menu_list{
-            &-close{
-                font-size: 16px;
-                color: rgb(131, 55, 55);
-                text-shadow: #000;
-                transition: 0.3s all;
-                &:hover{
-                    text-decoration: 1px #000 wavy underline;
-                }
-            }
             &-delete{
-                border: 1px solid #933737;
-                border-left: none;
-                border-right: none;
                 transition: 0.3s all;
                 padding: 4px;
                 &:hover{
@@ -147,6 +160,16 @@ ul{
     -moz-box-shadow: 0px 3px 2px 0px rgba(34, 60, 80, 0.2) inset;
     box-shadow: 0px 3px 2px 0px rgba(34, 60, 80, 0.2) inset;
 }
+#form{
+    display: flex;
+    justify-content: center;
+    gap: 5px;
+}
+#colorOne{
+    cursor: crosshair;
+}
+
+
 
 @media(max-width: 425px){
     #close{

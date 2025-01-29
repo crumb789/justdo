@@ -121,7 +121,7 @@ components: {
       font-weight: 300;
       font-size: 14px;
       position: absolute;
-      right: -100px;
+      right: -50%;
       top: 50%;
       transform: translate(0, -3px);
 }
@@ -149,7 +149,7 @@ components: {
     }
 
     #counter-box{
-        right: 60%;
+        right: 3%;
         top: 120%;
     }
     
@@ -160,9 +160,10 @@ components: {
         margin-bottom: 50px;
     }
     #counter-box{
-        right: 50%;
+        right: 0;
         top: 120%;
-        width: 130px;
+        /* min-width: 130px; */
+        width: 140px;
         height: 20px;
     }
 }
