@@ -19,10 +19,23 @@
                 </li>
                 <li>
                     <form id="form" @submit.prevent="changeColorOne">
-                        <input id="colorOne" type="color" :value="BackgroundColorFromStore" @input="selectColors">
+                        <input id="colorOne" type="color" 
+                            :value="BackgroundColorFromStore" @input="selectColorsOne">
+                            <input type="range" v-model="opColorOne" min="0.1" max="1" step="0.1">
+                        <button><i class="bi bi-check-lg"></i></button>
+                    </form>
 
-                        <!-- <input type="color" :value="BackgroundColorSecondFromStore"> -->
-                        <button><i class="bi bi-brush"></i></button>
+                    <form id="formTwo" @submit.prevent="changeColorTwo">
+                        <input id="colorOne" type="color" 
+                            :value="BackgroundColorSecondFromStore" 
+                            @input="selectColorsTwo">
+                            <input type="range" 
+                                v-model="opColorTwo" 
+                                @change="changeOpacityTwo"
+                                min="0.1" 
+                                max="1" 
+                                step="0.1">
+                        <button><i class="bi bi-check-lg"></i></button>
                     </form>
                 </li>
             </ul>
@@ -57,6 +70,8 @@ export default {
             ],
             colorOne: '',
             colorSecond: '',
+            opColorOne: '1',
+            opColorTwo: '0.3'
         }
     },
     methods:{
@@ -67,13 +82,24 @@ export default {
             this.$store.commit('changeThmeme', number.count)
         },
         changeColorOne(){
-           console.log(this.colorOne) 
+           console.log(this.colorOne)    
+
            this.$store.commit('changeColorBackgr', this.colorOne)
         },
-        selectColors(event){
-            this.colorOne = event.target.value;
-            console.log('hgfhf', this.colorOne)
+        changeColorTwo(){
+            this.$store.commit('changeColorBackgrSecond', this.colorSecond, this.opColorTwo)
         },
+        selectColorsOne(event){
+            this.colorOne = event.target.value;
+            // console.log('hgfhf', this.colorOne)
+        },
+        selectColorsTwo(event){
+            this.colorSecond = event.target.value;
+            // console.log('hgfhf', this.colorSecond)
+        },
+        changeOpacityTwo(){
+            this.$store.commit('changeOpacityTwo', this.opColorTwo)
+        }
     },
     computed:{
         numberTheme(){
@@ -101,7 +127,7 @@ export default {
         right: 0;
         font-size: 14px;
         width: 280px;
-        height: 200px;
+        height: 264px;
         border: 1px solid #000;
         border-radius: 8px;
         z-index: 80;
@@ -165,10 +191,18 @@ ul{
     justify-content: center;
     gap: 5px;
 }
+#formTwo{
+    display: flex;
+    justify-content: center;
+    gap: 5px;
+    margin-top: 5px;
+}
 #colorOne{
     cursor: crosshair;
 }
-
+button{
+    cursor: pointer;
+}
 
 
 @media(max-width: 425px){

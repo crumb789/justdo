@@ -29,6 +29,7 @@
                     </button>
                 </div>
 
+                    <!-- content -->
                 <p>
                     <span :class="{hiddin: editingItem && editBtn === item.id}">
                         {{ item.text }} 

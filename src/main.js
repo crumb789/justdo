@@ -11,9 +11,11 @@ store.subscribe( (mutation, state) => {
     // localStorage.setItem('sortedList', JSON.stringify(state.sortedList));  
     localStorage.setItem('FilterDate', JSON.stringify(state.DataToSorted)); 
     localStorage.setItem('ThemeNumber', JSON.stringify(state.themeBack)); 
-
-  
-
+    localStorage.setItem('BackgroundColorInStorage', JSON.stringify(state.BackgroundColor));
+    localStorage.setItem('BackgroundColorSecondInStorage', JSON.stringify(state.BackgroundColorSecond));
+    localStorage.setItem('BackgroundColorOpacitySecondInStorage', JSON.stringify(state.BackgroundColorOpacitySecond));
+    
+    
 
     sessionStorage.setItem('modalWindow', JSON.stringify(state.modalWindow));  
 })
