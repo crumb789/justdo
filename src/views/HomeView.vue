@@ -115,7 +115,20 @@ components: {
   font-style: normal;
   margin-bottom: 30px;
   margin-top: 30px;
-
+  z-index: 50;
+  &::before{
+    content: "";
+    display: block;
+    position: absolute;
+    width: 99%;
+    bottom: 0;
+    height: 30px;
+    border-radius: 5px;
+    background-color: #eef7ff;
+    left: 1px;
+    z-index: -1;
+    // background-color: #00947e;
+  }
 }
 #counter-box{
       font-weight: 300;

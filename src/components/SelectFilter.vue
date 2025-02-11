@@ -1,5 +1,5 @@
 <template>
-    <div class="select select-filter is-small is-rounded" v-if="howManyItems > 0">
+    <div class="select select-filter is-small is-rounded animate__animated animate__fadeIn" v-if="howManyItems > 0">
         <!-- <button @click="changeSorted">fdsfds</button>
         <button @click="changeSortedBack">fdsfds</button> -->
         <select @change="changeSorted">
@@ -39,6 +39,9 @@ export default {
 
 
 <style lang="scss">
+.animate__animated.animate__fadeIn{
+    --animate-duration: 0.6s;
+}
 .select{
     &-filter{
         position: absolute;

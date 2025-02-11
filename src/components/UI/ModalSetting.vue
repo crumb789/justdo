@@ -21,7 +21,7 @@
                     <form id="form" @submit.prevent="changeColorOne">
                         <input id="colorOne" type="color" 
                             :value="BackgroundColorFromStore" @input="selectColorsOne">
-                            <input type="range" v-model="opColorOne" min="0.1" max="1" step="0.1">
+                            <!-- <input type="range" v-model="opColorOne" min="0.1" max="1" step="0.1"> -->
                         <button><i class="bi bi-check-lg"></i></button>
                     </form>
 
@@ -29,18 +29,22 @@
                         <input id="colorOne" type="color" 
                             :value="BackgroundColorSecondFromStore" 
                             @input="selectColorsTwo">
-                            <input type="range" 
+
+                            <button><i class="bi bi-check-lg"></i></button>
+
+                            <label for="opacityTwo" class="opacity">Opacity</label>
+                            <input type="range" id="opacityTwo"
                                 v-model="opColorTwo" 
                                 @change="changeOpacityTwo"
                                 min="0.1" 
                                 max="1" 
-                                step="0.1">
-                        <button><i class="bi bi-check-lg"></i></button>
+                                step="0.1">                        
                     </form>
+                    <button class="button is-small button-reset" @click="resetAllColors">Return</button>
                 </li>
             </ul>
             
-            <li class="menu_list-delete">Delete all notes</li>
+            <li class="menu_list-delete" @click="youSure">Delete all notes</li>
             <!-- <li @click="closeMenu" class="menu_list-close">Close</li> -->
         </ul>
     </div>
@@ -82,8 +86,6 @@ export default {
             this.$store.commit('changeThmeme', number.count)
         },
         changeColorOne(){
-           console.log(this.colorOne)    
-
            this.$store.commit('changeColorBackgr', this.colorOne)
         },
         changeColorTwo(){
@@ -99,7 +101,22 @@ export default {
         },
         changeOpacityTwo(){
             this.$store.commit('changeOpacityTwo', this.opColorTwo)
-        }
+        },
+        resetAllColors(){
+            this.$store.commit('resetColors')
+        },
+        youSure(){
+            let answer = confirm('You Sure? Delete everything?')
+            
+            if(answer){
+                this.$store.commit('DeleteAllItems')
+                this.closeMenu()
+            }
+            else false
+
+        },
+
+
     },
     computed:{
         numberTheme(){
@@ -127,7 +144,7 @@ export default {
         right: 0;
         font-size: 14px;
         width: 280px;
-        height: 264px;
+        height: 300px;
         border: 1px solid #000;
         border-radius: 8px;
         z-index: 80;
@@ -171,7 +188,7 @@ ul{
         // -moz-box-shadow: 0px 1px 1px 0px rgba(34, 60, 80, 0.2) ;
         // box-shadow: 0px 1px 1px 0px rgba(34, 60, 80, 0.2) ;
         &:hover{
-            color: #f5bf6e;
+            border: 1px solid #f5bf6e;
         }
     }        
         
@@ -188,7 +205,8 @@ ul{
 }
 #form{
     display: flex;
-    justify-content: center;
+    // justify-content: center;
+    justify-content: flex-start;
     gap: 5px;
 }
 #formTwo{
@@ -202,6 +220,17 @@ ul{
 }
 button{
     cursor: pointer;
+}
+.button{
+    &-reset{
+        margin-top: 10px;
+    }
+}
+.opacity{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(50%);
 }
 
 

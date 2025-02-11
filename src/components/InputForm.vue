@@ -47,7 +47,7 @@
                 </span>
                 <span @click="resetDataToSorted"
                     class="data-close" title="reset this date">
-                        <i class="bi bi-door-closed"></i>
+                        <i class="bi bi-door-open-fill"></i>
                 </span>
             </div>
         </div>

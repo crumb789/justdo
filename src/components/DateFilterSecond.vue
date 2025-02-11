@@ -14,7 +14,7 @@
 
         <!-- btn-reset -->
         <span v-if="!showBtnDataChoise"  @click="resetDataToSorted" class="data-reset data-box" title="reset date?">
-            <i class="bi bi-x-circle"></i>
+            <i class="bi bi-x-circle-fill"></i>
         </span> 
     </div>
 </template>
