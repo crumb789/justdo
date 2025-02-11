@@ -14,7 +14,7 @@
                 </div>
                 <div @click="changeBtnMore" class="button is-ghost animate__animated animate__fadeInUp" title="more data ">
                     <!-- more data -->
-                    <i class="bi bi-chevron-double-down"></i>
+                    <i class="bi bi-arrow-90deg-down"></i>
                 </div>
             </form>
 
@@ -30,12 +30,15 @@
                     <button id="button" class="button is-success is-dark">Push</button>
                     
                 </div>
-                <label class="label animate__animated animate__lightSpeedInLeft" for="input-date">When should I do it?</label>
+                <label class="label animate__animated animate__lightSpeedInLeft" id="labelDoIt"
+                    for="input-date">
+                     When should I do it?
+                </label>
                 <input id="input-date" required
                     v-model="mustDone"
                     class="input input-date is-info is-small animate__animated animate__jackInTheBox " type="date">
                 <div @click="changeBtnMore" class="button is-ghost animate__animated animate__backInDown" title="close">
-                    <i class="bi bi-chevron-bar-up"></i>
+                    <i class="bi bi-arrow-90deg-up"></i>
                     <!-- close -->
                 </div>
             </form>
@@ -157,6 +160,10 @@ export default {
     }
 }
 
+i{
+    font-size: 18px;
+}
+
 .is-small{
     &.input{
         border-radius: 6px;
@@ -168,6 +175,13 @@ export default {
 #button{
     height: 30px;
     margin-left: 3px;
+}
+#labelDoIt{
+    // border: 1px solid #3e8ed0a8;
+    margin-top: 5px;
+    padding: 2px 10px;
+    border-radius: 3px;
+    background-color: #eef7ff;
 }
 .data{
     position: absolute;
@@ -222,7 +236,7 @@ export default {
     {
         .data{
             top: -34px !important;
-            right: 5% !important;
+            right: 3% !important;
         }
     }
 </style>

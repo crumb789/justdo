@@ -173,7 +173,7 @@ components: {
         margin-bottom: 50px;
     }
     #counter-box{
-        right: 0;
+        left: 0;
         top: 120%;
         /* min-width: 130px; */
         width: 140px;

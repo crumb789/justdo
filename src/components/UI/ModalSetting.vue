@@ -144,7 +144,7 @@ export default {
         right: 0;
         font-size: 14px;
         width: 280px;
-        height: 300px;
+        // height: 300px;
         border: 1px solid #000;
         border-radius: 8px;
         z-index: 80;
@@ -166,10 +166,12 @@ ul{
             &-delete{
                 transition: 0.3s all;
                 padding: 4px;
+                opacity: 0.5;
                 &:hover{
                     background: #933737;
                     color: #f5bf6e;
                     border-radius: 5px;
+                    opacity: 1;
                 }
             }
         }
@@ -177,7 +179,7 @@ ul{
     }
 }
 .backgr{
-    margin: 22px 0;
+    margin: 10px 0;
     &_list{
         text-align: left;
         transition: 0.2s all;
