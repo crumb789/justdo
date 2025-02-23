@@ -6,8 +6,8 @@
   </div>
   <button  @click="closeMenu" class="modal-close is-large" id="close" aria-label="close"></button>
 </div>
-    <div class="setting-box animate__animated animate__fadeInDown animate__faster">
-        <ul class="menu">
+    <div class="setting-box animate__animated animate__fadeInDown animate__faster" :class="{darkBackColor: whatTheme}">
+        <ul class="menu" >
             <ul class="backgr">Backgrounds:
                 <li @click="choiseTheme(number)"
                     v-for="number in themeHWO" :key="number.id" 
@@ -19,28 +19,33 @@
                 </li>
                 <li>
                     <form id="form" @submit.prevent="changeColorOne">
-                        <input id="colorOne" type="color" 
+                        <input id="colorOne" type="color" :class="{darkBackColor: whatTheme}"
                             :value="BackgroundColorFromStore" @input="selectColorsOne">
                             <!-- <input type="range" v-model="opColorOne" min="0.1" max="1" step="0.1"> -->
                         <button><i class="bi bi-check-lg"></i></button>
                     </form>
 
                     <form id="formTwo" @submit.prevent="changeColorTwo">
-                        <input id="colorOne" type="color" 
+                        <input id="colorOne" type="color" :class="{darkBackColor: whatTheme}"
                             :value="BackgroundColorSecondFromStore" 
                             @input="selectColorsTwo">
 
-                            <button><i class="bi bi-check-lg"></i></button>
+                            <button><i class="bi bi-check-lg" ></i></button>
 
                             <label for="opacityTwo" class="opacity">Opacity</label>
-                            <input type="range" id="opacityTwo"
+                            <input type="range" id="opacityTwo" :class="{darkBackColor: whatTheme}"
                                 v-model="opColorTwo" 
                                 @change="changeOpacityTwo"
                                 min="0.1" 
                                 max="1" 
-                                step="0.1">                        
-                    </form>
-                    <button class="button is-small button-reset" @click="resetAllColors">Return</button>
+                                step="0.1">    
+                            </form>
+                    <!-- переключатель темы -->
+                    <toggle-comp></toggle-comp>                
+                    
+                    <button class="button is-small button-reset" @click="resetAllColors" :class="{darkBackColor: whatTheme}">
+                        Return
+                    </button>
                 </li>
             </ul>
             
@@ -51,8 +56,11 @@
 </template>
 
 <script>
+import toggleComp from './toggleComp.vue'
+
 
 export default {
+  components: { toggleComp },
     data() {
         return{
             themeHWO: [
@@ -132,6 +140,9 @@ export default {
         BackgroundColorSecondFromStore(){
             return this.$store.state.BackgroundColorSecond
         },
+        whatTheme(){
+            return this.$store.state.themeIsDark
+        },
     }
 }
 </script>
@@ -164,6 +175,7 @@ ul{
         }
         &.menu_list{
             &-delete{
+                color: #000;
                 transition: 0.3s all;
                 padding: 4px;
                 opacity: 0.5;
@@ -230,11 +242,10 @@ button{
 }
 .opacity{
     position: absolute;
-    top: 50%;
+    top: 45%;  /* 50% */
     left: 50%;
     transform: translate(50%);
 }
-
 
 @media(max-width: 425px){
     #close{

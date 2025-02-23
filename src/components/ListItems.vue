@@ -1,5 +1,5 @@
 <template>
-    <div class="list">
+    <div class="list" :class="{mtLittle: GetAllItems.length > 7}">
         <check-important v-if="!actualDateForItems && ifSorted"></check-important>
 
         <!-- ИНПУТ ДАТЫ -->
@@ -91,7 +91,7 @@ export default {
         },
         actualDateForItems(){
             return this.$store.state.DataToSorted.length
-        }
+        },
     },
     methods:{
         DeleteThisitem(item){
@@ -125,12 +125,15 @@ export default {
 .list{
     display: flex;
     flex-direction: column;
-    margin: 45px 0px 60px 0px;
+    margin: 45px 0px 324px 0px;
     position: relative;
     &-item{
         display: flex;
         justify-content: center;
     }
+}
+.mtLittle{
+    margin: 45px 0px 60px 0px;
 }
 .item{
     position: relative;
@@ -156,6 +159,11 @@ export default {
         box-shadow: 2px 1px 3px  #9b9a9a;
     }
 }
+.itemDark{
+    &:hover{
+        box-shadow: 2px 3px 6px #4e4e4e !important;
+    }
+}
 
 .buttonsbox{
     border: 1px solid #bbb9b7;
@@ -175,6 +183,9 @@ export default {
     button{
         height: 100%;
     }
+}
+.buttonsboxIsDark{
+    box-shadow: -3px -3px 9px #4e4e4e !important;
 }
 .activeBtns{
     left: -73px;

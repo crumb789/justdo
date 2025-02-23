@@ -2,12 +2,12 @@
     <div class="list-item" v-for="item in GetAllItems" :key="item.id">
         <div class="item box" 
         :class="{green: item.check, orange: item.important, mix: item.check && item.important, 
-            alert: checkToday > Date.parse(item.mustDoneparse) && !item.check }" 
+            alert: checkToday > Date.parse(item.mustDoneparse) && !item.check, itemDark: whatTheme }" 
             @mouseenter="deleteButton = item.id, editBtn = item.id, newText = item.text"             
             @mouseleave="deleteButton = false, rotateBtn = false, editBtn = false, editingItem = false, newText= '' ">
             
             <div class="buttonsbox" v-if="!editingItem"
-                    :class="{activeBtns: deleteButton === item.id && item.id != 0}">
+                    :class="{activeBtns: deleteButton === item.id && item.id != 0, buttonsboxIsDark: whatTheme}">
                 <!-- <div class="buttonsbox" :class="{activeBtns:true}"> -->
                 <!-- done check -->
                 <button v-if="!item.check && item.check !== null" title="This is done"
@@ -146,7 +146,10 @@ export default {
         },
         checkToday(){
             return Date.parse(this.$store.getters.today)
-        }
+        },
+        whatTheme(){
+            return this.$store.state.themeIsDark
+        },
     }
 }
 </script>

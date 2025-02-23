@@ -1,6 +1,6 @@
 <template>
     <div class="counter animate__animated animate__slideInDown" v-if="howDone">
-        <div class="counter-go"  v-if="howDone !== howItemsLegth">
+        <div class="counter-go" :class="{darkBackColor: whatTheme}" v-if="howDone !== howItemsLegth">
             done {{howDone}} out of {{ howItemsLegth }} 
             <span class="line" :style="{width: widthDivider + '%'}" :class="{dividerDone: widthDivider == 100}"></span>
         </div>
@@ -41,6 +41,9 @@ export default {
             let result = current.reduce((item, sum) => sum + item, 0)
             let procent = 100 / (max / result)
             return (result === this.$store.state.ListItems.length) ? 100 : procent
+        },
+        whatTheme(){
+            return this.$store.state.themeIsDark
         },
 
     }

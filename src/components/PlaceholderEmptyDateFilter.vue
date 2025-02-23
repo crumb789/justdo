@@ -1,5 +1,7 @@
 <template>
-    <div v-if="!GetItemsFilterLength" class="placeholder animate__animated animate__shakeX">
+    <div v-if="!GetItemsFilterLength" 
+        class="placeholder animate__animated animate__shakeX"
+        :class="{placeholderIsDark: whatTheme}">
         There is nothing on this date <i class="bi bi-journal"></i>
     </div>
 </template>
@@ -18,6 +20,9 @@ export default {
         },
         GetItemsFilterLength(){
             return this.$store.state.Filter.length
+        },
+        whatTheme(){
+            return this.$store.state.themeIsDark
         },
         // GetSortedItemsLength(){
         //     return this.$store.getters.sortedItemsForId.length

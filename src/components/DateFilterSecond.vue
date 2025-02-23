@@ -8,12 +8,14 @@
 
 
         <form v-if="!showBtnDataChoise">
-            <input type="date" class="input input-date is-info is-small" id="date"
+            <input type="date" class="input input-date is-info is-small" id="date" :class="{darkBackColor: whatTheme}"
             v-model="dataSelect" @change="changeSortedDate">
         </form>
 
         <!-- btn-reset -->
-        <span v-if="!showBtnDataChoise"  @click="resetDataToSorted" class="data-reset data-box" title="reset date?">
+        <span v-if="!showBtnDataChoise"  
+            @click="resetDataToSorted" class="data-reset data-box" 
+            title="reset date?" :class="{darkBackColor: whatTheme}" >
             <i class="bi bi-x-circle-fill"></i>
         </span> 
     </div>
@@ -61,7 +63,10 @@ export default {
         },
         ifNeedResetdata(){
             return this.$store.state.DataToSorted.length
-        }
+        },
+        whatTheme(){
+            return this.$store.state.themeIsDark
+        },
     }
 }
 </script>

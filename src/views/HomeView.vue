@@ -4,7 +4,8 @@
   <div class="container">
 
       <div class="main">
-          <h1  class="title" @click="counterTitle">{{ title }} 
+          <h1  class="title" @click="counterTitle" :class="{darkBackColorTitle: whatTheme}">
+                {{ title }} 
             <span>
                 <i @click="settingOpen" class="bi bi-gear-fill setting"></i>
                 <modal-setting v-if="checkSettingMenu"></modal-setting>
@@ -25,8 +26,8 @@
       
       
       
+      
   </div>
-  <footer-comp></footer-comp>
 </template>
 
 
@@ -35,7 +36,7 @@ import InputForm from '@/components/InputForm.vue'
 import ListItems from '@/components/ListItems.vue'
 import CounterComp from '@/components/CounterComp.vue'
 import WelcomeAnimation from '@/components/UI/WelcomeAnimation.vue'
-import FooterComp from '@/components/FooterComp.vue'
+
 import ModalSetting from '@/components/UI/ModalSetting.vue'
 
 // import TuturVue from '@/components/UI/TuturVue.vue'
@@ -47,7 +48,7 @@ components: {
       ListItems,
       CounterComp,
       WelcomeAnimation,
-      FooterComp,
+
       ModalSetting,
     //   TuturVue
   },
@@ -82,7 +83,10 @@ components: {
       },
       checkSettingMenu(){
           return this.$store.state.setting
-      }
+      },
+      whatTheme(){
+          return this.$store.state.themeIsDark
+      },
   },
   mounted(){
       // this.counterTitle()
@@ -97,10 +101,10 @@ components: {
   font-weight: 400;
   font-style: normal;
 }
-
-#html{
-    background-color: rebeccapurple !important;
-}
+ 
+// #html{
+//     background-color: rebeccapurple !important;
+// }
 
 .main{
   display: block;

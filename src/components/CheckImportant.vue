@@ -3,7 +3,7 @@
         <div class="checked-circle" :class="{chekedUse: checkbox}">
             <span class="checked-circle_line" :class="{checkbox: checkbox == false }" ></span>
         </div>
-        <label class="checkbox-label" for="important-tag" >
+        <label class="checkbox-label" for="important-tag" :class="{darkBackColor: whatTheme}">
             <input type="checkbox" class="checkbox" id="important-tag" name="important-tag" v-model="checkbox" @click="showOnlyImportant" />
             only important
         </label>
@@ -38,7 +38,10 @@ export default {
     computed:{
         showButtonImportant(){
             return this.$store.getters.howManyImportant
-        }
+        },
+        whatTheme(){
+            return this.$store.state.themeIsDark
+        },
     }
 }
 </script>

@@ -2,7 +2,7 @@
     <div class="select select-filter is-small is-rounded animate__animated animate__fadeIn" v-if="howManyItems > 0">
         <!-- <button @click="changeSorted">fdsfds</button>
         <button @click="changeSortedBack">fdsfds</button> -->
-        <select @change="changeSorted">
+        <select @change="changeSorted" :class="{darkBackColor: whatTheme}">
             <option> Newer </option>
             <option> Older </option>
         </select>
@@ -29,7 +29,10 @@ export default {
         },
         GetAllItemsFilter(){
             return this.$store.state.ListItemsFilter
-        }
+        },
+        whatTheme(){
+            return this.$store.state.themeIsDark
+        },
 
     }
 }

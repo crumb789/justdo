@@ -1,5 +1,5 @@
 <template>
-  <footer class="footer">
+  <footer class="footer" :class="{footerDark: whatTheme}">
       <div class="content has-text-centered">
         <p>
           <a href="https://t.me/crumb789" target=”_blank”>
@@ -21,9 +21,12 @@ export default {
     return{
       Crumb
     }
-
-
   },
+  computed:{
+      whatTheme(){
+          return this.$store.state.themeIsDark
+      },
+  }
 }
 </script>
 
@@ -40,5 +43,14 @@ footer{
     // position: absolute;
     bottom: 0;
     // width: 100%;
+    
+}
+.footer{
+  background-color: #fafafa;  /* light */
+  height:150px;
+}
+
+.footerDark{
+  background-color: #1a1a1a !important; /* dark */
 }
 </style>

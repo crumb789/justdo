@@ -3,18 +3,20 @@
         <div class="form">
 
             <form v-if="btnMore" @submit.prevent="OnSubmit" >
-                <div class="form-box">
+                <div class="form-box" >
 
                    <!--deleted maxlength="80"  -->
 
-                    <input id="input-form"  required
+                    <input id="input-form"  required :class="{darkBackColor: whatTheme}"
                     class="input is-info is-small" type="text" v-model="item" 
                     placeholder="type here...">
-                    <button id="button" class="button is-success is-dark">Push</button>
+                    <button id="button" class="button is-success is-dark" :class="{darkBtnPush: whatTheme}">Push</button>
                 </div>
-                <div @click="changeBtnMore" class="button is-ghost animate__animated animate__fadeInUp" title="more data ">
-                    <!-- more data -->
-                    <i class="bi bi-arrow-90deg-down"></i>
+                <div @click="changeBtnMore" 
+                class="button is-ghost animate__animated animate__fadeInUp" 
+                title="more data ">
+                    <!-- more data open-->
+                    <i class="bi bi-arrow-90deg-down icon" :class="{darkBackColorAfter: whatTheme}"></i>
                 </div>
             </form>
 
@@ -24,27 +26,29 @@
 
                     <!--deleted maxlength="80"  -->
                     
-                    <input id="input-form " 
+                    <input id="input-form " :class="{darkBackColor: whatTheme}"
                     class="input is-info is-small " type="text" v-model="item"  
                     placeholder="type here...">
                     <button id="button" class="button is-success is-dark">Push</button>
                     
                 </div>
-                <label class="label animate__animated animate__lightSpeedInLeft" id="labelDoIt"
+                <label class="label animate__animated animate__lightSpeedInLeft" 
+                    :class="{darkBackColor: whatTheme}"
+                    id="labelDoIt"
                     for="input-date">
                      When should I do it?
                 </label>
-                <input id="input-date" required
+                <input id="input-date" required :class="{darkBackColor: whatTheme}"
                     v-model="mustDone"
                     class="input input-date is-info is-small animate__animated animate__jackInTheBox " type="date">
                 <div @click="changeBtnMore" class="button is-ghost animate__animated animate__backInDown" title="close">
-                    <i class="bi bi-arrow-90deg-up"></i>
                     <!-- close -->
+                    <i class="bi bi-arrow-90deg-up icon" :class="{darkBackColorAfter: whatTheme}"></i>
                 </div>
             </form>
             
             <!-- data, if choise -->
-            <div class="data" v-if="actualDateForItems[0]">
+            <div class="data" v-if="actualDateForItems[0]" :class="{darkBackColor: whatTheme}">
                 <span  class="data-number data-box data-box-line">
                     {{ actualDateForItems }}
                 </span>
@@ -124,7 +128,10 @@ export default {
     computed:{
         actualDateForItems(){
             return this.$store.state.DataToSorted
-        }
+        },
+        whatTheme(){
+            return this.$store.state.themeIsDark
+        },
     }
 }
 </script>
@@ -160,9 +167,6 @@ export default {
     }
 }
 
-i{
-    font-size: 18px;
-}
 
 .is-small{
     &.input{
@@ -188,6 +192,8 @@ i{
     top: 20%;
     right: -26%;
     transform: translateY(-50%);
+    border-radius: 3px;
+    padding: 0 2px;
     &-box{
         animation: fadeUp 1 0.2s ease;
         position: relative;
@@ -220,6 +226,33 @@ i{
         margin-left: 5px;
         cursor: pointer;
     }
+}
+
+.icon{
+    color: #a2b2bf;
+    font-size: 16px;
+    &::after{
+        content: "";
+        position: absolute;
+        width: 25px;
+        height: 25px;
+        background-color: #eef7ff;
+        border-radius: 4px;
+        border: 0.5px solid #a2b2bf;
+        z-index: -1;
+        &:hover{
+            text-decoration: none;
+        }
+    }
+}
+.darkBackColorAfter{
+    &::after{
+        background-color: #595a5a !important;
+        border: 1px solid #797c7e;
+    }
+}
+.darkBtnPush{
+    background-color: #2e8d62 !important;
 }
 
 @keyframes fadeUp {

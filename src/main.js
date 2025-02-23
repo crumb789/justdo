@@ -14,6 +14,7 @@ store.subscribe( (mutation, state) => {
     localStorage.setItem('BackgroundColorInStorage', JSON.stringify(state.BackgroundColor));
     localStorage.setItem('BackgroundColorSecondInStorage', JSON.stringify(state.BackgroundColorSecond));
     localStorage.setItem('BackgroundColorOpacitySecondInStorage', JSON.stringify(state.BackgroundColorOpacitySecond));
+    localStorage.setItem('themeIsDarkInStorage', JSON.stringify(state.themeIsDark)); 
     
     
 

@@ -3,6 +3,7 @@ import { createStore } from 'vuex';
 export default createStore({
   state: {
     themeBack: 3,
+    themeIsDark: false,
     sortedList: true,
     importantFilter: false,
     ListItems:[
@@ -291,6 +292,21 @@ export default createStore({
     changeThmeme(state, number){
       state.themeBack = number
     },
+    changeToDark(state){
+      let a = state.themeIsDark
+
+      if(!a){
+        state.themeIsDark = true
+        state.BackgroundColor = '#1a1a1a'
+      }
+      if(a){
+        state.themeIsDark = false
+        state.BackgroundColor = '#e6f3ff'
+      }
+      else false
+      
+    },
+
     changeColorBackgr(state, newColor){
       // console.log(newColor)
       state.BackgroundColor = newColor    
@@ -308,7 +324,8 @@ export default createStore({
       state.BackgroundColor = '#e6f3ff',
       state.BackgroundColorOpacity = '1',  
       state.BackgroundColorSecond = '#b4c6ee',
-      state.BackgroundColorOpacitySecond = '0.4'
+      state.BackgroundColorOpacitySecond = '0.2'
+      state.themeIsDark = false
     },
 
 
@@ -336,6 +353,9 @@ export default createStore({
       }
       if(localStorage.getItem('BackgroundColorOpacitySecondInStorage')){
         state.BackgroundColorOpacitySecond = JSON.parse(localStorage.BackgroundColorOpacitySecondInStorage)
+      }
+      if(localStorage.getItem('themeIsDarkInStorage')){
+        state.themeIsDark = JSON.parse(localStorage.themeIsDarkInStorage)
       }
 
 
