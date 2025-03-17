@@ -160,6 +160,8 @@ export default {
     }
 }
 .itemDark{
+    background-color: #747272;
+    color: #f3e8d8;
     &:hover{
         box-shadow: 2px 3px 6px #4e4e4e !important;
     }
@@ -281,13 +283,20 @@ export default {
     border-top: 1px solid #96020275;
     border-right: 3px solid #96020275;
     border-bottom: 1px solid #96020275;
-    transform: 0.2s all;
+    transition: 0.2s all;
+}
+.orangeDark{
+    background-color: #ffb982;
+    color: #000 !important;
 }
 .mix{
     background-color: #b7f7c8;
     p{
         opacity: 0.8;
     }
+}
+.mixDark{
+    background-color: #5db58d !important;
 }
 
 .alert{

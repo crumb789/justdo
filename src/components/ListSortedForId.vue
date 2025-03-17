@@ -2,7 +2,8 @@
     <div class="list-item" v-for="item in GetSortedItems" :key="item.id">
         <div class="item box" 
         :class="{green: item.check, orange: item.important, mix: item.check && item.important, 
-            alert: checkToday > Date.parse(item.mustDoneparse) && !item.check, itemDark: whatTheme }" 
+            alert: checkToday > Date.parse(item.mustDoneparse) && !item.check, itemDark: whatTheme,
+            orangeDark: whatTheme && item.important, mixDark: whatTheme && item.check }" 
             @mouseenter="deleteButton = item.id, editBtn = item.id, newText = item.text"             
             @mouseleave="deleteButton = false, rotateBtn = false, editBtn = false, editingItem = false, newText= '' ">
                 

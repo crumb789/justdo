@@ -1,0 +1,12 @@
+.alertDark
+	backbground   #c98c22
+	border        #ab4d01
+
+
+.itemDark
+	backgr       #747272
+	color        #f3e8d8
+	
+.orangeDark 
+	background-color: #ffb982;
+    	color: #c98c22 !important;

@@ -1,5 +1,5 @@
 <template>
-    <div class="welcome" :class="{closeModal: openModalSpace}">
+    <div class="welcome" :class="{closeModal: openModalSpace, darkBackColorWelcome: whatTheme}">
         <div class="welcome-text   " :class="{closeModalText: openModalSpace}">
             <!-- {{ welcome }} -->
             <div class="welcomeOne">
@@ -17,7 +17,7 @@
             <div class="welcomeFive">
                 {{ welcome_5 }}
             </div>
-            <div class="welcomeSix">
+            <div class="welcomeSix" :class="{welcomeSixDark: whatTheme}">
                 {{ welcome_6 }}
             </div>
             <div class="circle-box">
@@ -76,7 +76,10 @@ export default {
     computed: {
         checkModal(){
             return this.$store.state.modalWindow
-        }
+        },
+        whatTheme(){
+            return this.$store.state.themeIsDark
+        },
     },
     mounted() {
         // this.textGo()
@@ -98,6 +101,7 @@ export default {
     font-family: "Reem Kufi Ink", sans-serif;
     font-weight: 400;
     z-index: 100;
+    color: #2c3e50;
     background: red($color: #000000);
     display: flex;
     justify-content: center;
@@ -127,7 +131,12 @@ export default {
         padding: 50px 50px 220px 50px;
         // border-radius: 15px;
         text-decoration: underline;
+        // color: #2c3e50;
     }
+}
+.darkBackColorWelcome{
+    background-color: #2c3e50 !important;
+    color: #f0f8ff;
 }
 
 .welcomeOne{
@@ -183,7 +192,9 @@ export default {
     animation-delay: 1.4s;
     animation-fill-mode:backwards;
 }
-
+.welcomeSixDark{
+    background-color: #097a69 !important;
+}
 .closeModal{
     animation: opacityFade 1s 1 ease;
     display: none;
